@@ -3,7 +3,7 @@ export type TagType={
     link: string,
     icon:string,
     heat?:number,
-    type:'community'|'lib'|'frame'|any
+    type?:string
 }
 interface  SocureType{
     'community':"社区",
