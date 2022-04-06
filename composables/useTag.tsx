@@ -5,13 +5,15 @@ import { TagType } from "../types/label";
 
  type operType='add'|'delete'|'heat'|'unHeat'
 
+ type TagsType=Array<[string,[TagType]]>|null
+
 type UseTagRetrunType = [
-  tags: Array<[string,[TagType]]>|null,
+  tags: TagsType,
   method: (tag:TagType,oper:operType) => void,
 ];
 const useTag = (): UseTagRetrunType => {
-  const [tags, setTags] = useState(null);
-  const addTag = () => {
+  const [tags, setTags] = useState<TagsType>(null);
+  const addTag = (tag:TagType) => {
     // const newTagIndex=newTags.findIndex(item=>JSON.stringify(item)===JSON.stringify(item))
     // if(newTagIndex){
     //     newTags[newTagIndex].heat=(newTags[newTagIndex].heat||0)+1
@@ -21,13 +23,13 @@ const useTag = (): UseTagRetrunType => {
     // newTags=[...newTags]
     // let tagList=[]
   };
-  const deleteTag = () => {};
+  const deleteTag = (tag:TagType) => {};
 
-  const changeTag = () => {};
+  const changeTag = (tag:TagType) => {};
 
-  const heatTag = () => {};
+  const heatTag = (tag:TagType) => {};
 
-  const unHeatTag = () => {};
+  const unHeatTag = (tag:TagType) => {};
 
   const initTags = () => {
     if (!tags) {
@@ -40,8 +42,8 @@ const useTag = (): UseTagRetrunType => {
 
       let tagList = [["hot", favoreateTop10 ]];
       const result = tranferTag(groupByTagType(newTags));
-      tagList = tagList.concat(result as []);
-      setTags(tagList as any);
+      tagList = tagList.concat(result );
+      setTags(tagList );
     }
   };
   useEffect(() => {
@@ -50,16 +52,16 @@ const useTag = (): UseTagRetrunType => {
 
   return [tags,(tag,oper)=>{
     if(oper==='add'){
-      addTag()
+      addTag(tag)
     }
     if(oper==='delete'){
-      addTag()
+      deleteTag(tag)
     }
     if(oper==='heat'){
-      addTag()
+      heatTag(tag)
     }
     if(oper==='unHeat'){
-      addTag()
+      unHeatTag(tag)
     }
   }];
 };
