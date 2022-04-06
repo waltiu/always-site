@@ -11,7 +11,9 @@
     "export": "next export"
   },
   "dependencies": {
+    "@types/jsonp": "^0.2.1",
     "antd": "^4.19.5",
+    "jsonp": "^0.2.1",
     "next": "12.1.4",
     "react": "18.0.0",
     "react-dom": "18.0.0",

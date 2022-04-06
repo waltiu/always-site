@@ -1,10 +1,24 @@
-.top-nav{
-    width: 100%;
+.top-nav {
+  box-shadow: 0 0.1px 0.1px #00000004, 0 0.1px 0.3px #00000006,
+    0 0.3px 0.5px #00000008, 0 0.4px 0.9px #0000000a, 0 0.8px 1.7px #0000000c,
+    0 2px 4px #00000012;
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  background-color: #fff;
+  padding: 20px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .search-box {
+    box-shadow: 0 0 0 1px #0000000d, 0 2px 4px 1px #00000017;
+    width: 800px !important;
+    height: 46px !important;
+    border-radius: 10px;
     background-color: #fff;
     display: flex;
+    padding: 0px 8px;
     justify-content: center;
-    align-items: center;
-    .search-box{
-        width: 700px;
-    }
+  }
 }
