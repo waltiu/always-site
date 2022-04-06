@@ -1,7 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import TopNav from '../compoments/TopNav'
-
 const Home: NextPage = () => {
   return (
     <div >
@@ -11,7 +10,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="//avatars.githubusercontent.com/u/35523427?v=4" />
       </Head>
 
-      <main>
+      <main className='scrollbar-beautiful'>
         <TopNav/>
       </main>
 

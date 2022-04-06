@@ -11,6 +11,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  flex-direction: column;
   .search-box {
     box-shadow: 0 0 0 1px #0000000d, 0 2px 4px 1px #00000017;
     width: 800px !important;
@@ -20,5 +22,26 @@
     display: flex;
     padding: 0px 8px;
     justify-content: center;
+  }
+  .result-box{
+      position: absolute;
+      width: 800px !important;
+      margin: 0px auto;
+      top: 76px;
+      border: 1px solid rgba(0,0,0,.05)!important;
+      box-shadow: 0 4px 4px 0 rgb(0 0 0 / 10%);
+      border-radius: 12px;
+      background-color: #fff;
+      padding: 12px 0px;
+      max-height: 0px;
+      overflow-y: auto;
+      transition: max-height 2s;
+      .result-item{
+          padding: 0px 16px;
+          line-height: 32px;
+          &:hover{
+              background-color: #00000004;
+          }
+      }
   }
 }

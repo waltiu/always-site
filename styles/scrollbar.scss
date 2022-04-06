@@ -1,0 +1,25 @@
+.scrollbar-beautiful {
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 12px;
+      background-color: #fff;
+    }
+  
+    /* 滚动条里的小块 */
+    ::-webkit-scrollbar-thumb {
+      display: block;
+      min-width: 8px;
+      min-height: 12px;
+      background-color: rgb(217 217 217);
+      border-radius: 6px;
+    }
+  
+    /* 鼠标悬浮 */
+    ::-webkit-scrollbar-thumb:hover {
+      display: block;
+      min-width: 8px;
+      min-height: 12px;
+      background-color: rgb(159 159 159);
+      border-radius: 6px;
+    }
+  }
