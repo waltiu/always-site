@@ -2,16 +2,20 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-       loader: "custom",
-    },
+    loader: "custom",
+  },
+  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    config.output.publicPath='always-site'
+    return config;
+  },
   exportPathMap: async function (
     defaultPathMap,
     { dev, dir, outDir, distDir, buildId }
   ) {
     return {
-      '/': { page: '/' },
-    }
+      "/": { page: "/" },
+    };
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
