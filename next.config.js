@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
 const pkg =require('./package.json')
+const isProd = process.env.NODE_ENV === 'production'
+
 const nextConfig = {
-  assetPrefix:pkg.name,
+  assetPrefix:isProd?pkg.name:'',
   reactStrictMode: true,
   images: {
     loader: "custom",
