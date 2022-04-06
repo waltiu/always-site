@@ -1,13 +1,13 @@
 
 
 export const sourceTypes={
-  visualization:{
+  'visualization':{
     title:"数据可视化"
   },
-  hot:{
+  'hot':{
     title:'最热'
   },
-  design:{
+  'design':{
     title:"设计"
   }
 }

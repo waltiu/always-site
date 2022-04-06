@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { defaultTag } from "../static/constant";
 import { groupByTagType, tranferTag } from "../util";
 import { TagType } from "../types/label";
+
+ type operType='add'|'delete'|'heat'|'unHeat'
+
 type UseTagRetrunType = [
   tags: Array<[string,[TagType]]>|null,
-  addTag: () => void,
-  deleteTag: () => void,
-  heatTag: () => void,
-  unHeatTag: () => void
+  method: (tag:TagType,oper:operType) => void,
 ];
 const useTag = (): UseTagRetrunType => {
   const [tags, setTags] = useState(null);
@@ -48,6 +48,19 @@ const useTag = (): UseTagRetrunType => {
     initTags();
   });
 
-  return [tags, addTag, deleteTag, heatTag, unHeatTag];
+  return [tags,(tag,oper)=>{
+    if(oper==='add'){
+      addTag()
+    }
+    if(oper==='delete'){
+      addTag()
+    }
+    if(oper==='heat'){
+      addTag()
+    }
+    if(oper==='unHeat'){
+      addTag()
+    }
+  }];
 };
 export default useTag;
