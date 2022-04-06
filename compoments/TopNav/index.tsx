@@ -27,7 +27,7 @@ const TopNav = () => {
           onChange={querySearch}
         />
       </div>
-          <div className={classNames(styles["result-box"],'scrollbar-beautiful')} style={sugList?.length?{maxHeight:'300px'}:{visibility:'hidden'}}>
+          <div className={classNames(styles["result-box"])} style={sugList?.length?{maxHeight:'300px'}:{visibility:'hidden'}}>
             {(sugList||[]).map((item) => {
               return (
                 <div key={item} className={styles["result-item"]}>

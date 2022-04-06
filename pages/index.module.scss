@@ -1,0 +1,18 @@
+.always-site{
+    .middle{
+        display: flex;
+        justify-content: center;
+        margin-top: 64px;
+        width: 100%;
+        >div{
+            margin-right: 60px;
+            &:first-child{
+                width: 45%;
+            }
+            &:last-child{
+                width: 25%;
+
+            }
+        }
+    }
+}

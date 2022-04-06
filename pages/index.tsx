@@ -1,6 +1,10 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import TopNav from '../compoments/TopNav'
+import Label from '../compoments/Label'
+import Intro from '../compoments/Intro'
+import styles from './index.module.scss'
+import classNames from 'classnames'
 const Home: NextPage = () => {
   return (
     <div >
@@ -10,8 +14,12 @@ const Home: NextPage = () => {
         <link rel="icon" href="//avatars.githubusercontent.com/u/35523427?v=4" />
       </Head>
 
-      <main className='scrollbar-beautiful'>
+      <main className={classNames('scrollbar-beautiful',styles['always-site'])}>
         <TopNav/>
+        <div className={styles.middle}>
+            <Label />
+            <Intro/>
+        </div>
       </main>
 
 
