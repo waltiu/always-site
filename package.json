@@ -7,13 +7,15 @@
     "build": "next build",
     "server": "next start",
     "lint": "next lint",
-    "generate":"next build && next export",
-    "export":"next export"
+    "generate": "next build && next export",
+    "export": "next export"
   },
   "dependencies": {
+    "antd": "^4.19.5",
     "next": "12.1.4",
     "react": "18.0.0",
-    "react-dom": "18.0.0"
+    "react-dom": "18.0.0",
+    "sass": "^1.49.11"
   },
   "devDependencies": {
     "@types/node": "17.0.23",
