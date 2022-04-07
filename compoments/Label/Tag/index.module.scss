@@ -1,0 +1,12 @@
+.tag{
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin: 8px 32px 8px 0px;
+  width: 160px;
+  .name{
+      margin-left: 8px;
+      line-height: 24px;
+      font-weight: lighter
+  }
+}
