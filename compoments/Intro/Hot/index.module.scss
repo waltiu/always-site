@@ -1,35 +1,76 @@
-.hot{
-    .label{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        .title{
-            display: flex;
-            align-items: center;
-            font-weight: bold;
-            &::before{
-           background-image: url('../../../static/images/hot-logo.png');
-                content: '';
-                display: inline-block;
-                flex-shrink: 0;
-                height: 16px;
-                margin-right: 2px;
-                width: 16px;
-                background-size: 100%;
-            }
-        }
-        .refresh{
-            cursor: pointer;
-            font-size: 10px;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            >span{
-                margin-left: 4px;
-            }
-            &:hover{
-                color: #0084ff;
-            }
-        }
+.hot {
+  .label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .title {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      &::before {
+        background-image: url("../../../static/images/hot-logo.png");
+        content: "";
+        display: inline-block;
+        flex-shrink: 0;
+        height: 16px;
+        margin-right: 2px;
+        width: 16px;
+        background-size: 100%;
+      }
     }
+    .refresh {
+      cursor: pointer;
+      font-size: 10px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      > span {
+        margin-left: 4px;
+      }
+      &:hover {
+        color: #0084ff;
+      }
+    }
+  }
+  .tab-title{
+      display: flex;
+      align-items: center;
+    .tab-icon{
+        width: 16px;
+        height: 16px;
+        margin-right: 4px;
+    }
+  }
+
+  .host-list{
+      min-height: 240px;
+      padding-bottom: 12px;
+    .hot-item {
+        display: flex;
+        width: 100%;
+        position: relative;
+        margin-bottom: 2px;
+        .index {
+          padding-right: 5px;
+          font-style: normal;
+          color: #a1a7b7;
+          font-size: 14px;
+          font-family: Constantia, Georgia, sans-serif;
+          outline: none;
+          margin-right: 4px;
+        }
+        .text {
+          width: calc(100% - 100px);
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+        .hot-value {
+          position: absolute;
+          right: 0px;
+          color: #9195a3;
+        }
+      }
+  }
+ 
 }

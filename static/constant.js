@@ -1,6 +1,6 @@
 
 export const IS_HOT='hot'
-
+export const HOT_SHOW_MAX=10
 export const sourceTypes={
   'visualization':{
     title:"数据可视化"
@@ -13,6 +13,35 @@ export const sourceTypes={
   }
 }
 
+
+export const hotList=[{
+  name:'baidu',
+  url:"https://www.frontendjs.com/api/hot/baidu",
+  icon:'https://www.baidu.com/favicon.ico',
+  tranferData:(data)=>{
+    return (data?.data||[]).map((item,index)=>{
+      return {
+        text:item.text,
+        hotValue:item.hotValue,
+        link:item.link
+      }
+      }).slice(0,HOT_SHOW_MAX)
+  }
+},
+{
+  name:'知乎',
+  url:"https://tenapi.cn/zhihuresou/",
+  icon:'https://static.zhihu.com/heifetz/favicon.ico',
+  tranferData:(data)=>{
+   return( data?.list||[]).map((item,index)=>{
+    return {
+      text:item.query,
+      link:item.url
+    }
+    }).slice(0,HOT_SHOW_MAX)
+
+  }
+}]
 
 
 export const defaultTag=[
