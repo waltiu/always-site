@@ -1,0 +1,35 @@
+.hot{
+    .label{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .title{
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            &::before{
+           background-image: url('../../../static/images/hot-logo.png');
+                content: '';
+                display: inline-block;
+                flex-shrink: 0;
+                height: 16px;
+                margin-right: 2px;
+                width: 16px;
+                background-size: 100%;
+            }
+        }
+        .refresh{
+            cursor: pointer;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            >span{
+                margin-left: 4px;
+            }
+            &:hover{
+                color: #0084ff;
+            }
+        }
+    }
+}

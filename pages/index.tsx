@@ -1,14 +1,15 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import classNames from 'classnames'
 import TopNav from 'compoments/TopNav'
 import Label from 'compoments/Label'
 import Intro from 'compoments/Intro'
 import styles from './index.module.scss'
-import classNames from 'classnames'
+
 
 
 const Home: NextPage = (props) => {
-  console.log(props,'props')
+
   return (
     <div >
       <Head>
@@ -31,7 +32,6 @@ const Home: NextPage = (props) => {
 }
 Home.getInitialProps = async ctx => {
   return {
-    test:1
   };
 }
 export default Home
