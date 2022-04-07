@@ -35,7 +35,7 @@ const useTag = (): UseTagRetrunType => {
     if (!tags) {
       let newTags = [...defaultTag];
       const favoreateTop10 = newTags
-        .sort((a: TagType, b: TagType) => {
+        .sort((a: any, b: any) => {
           return (b.heat || 0) - (a!.heat || 0);
         })
         .slice(0, 10) ;
@@ -43,7 +43,7 @@ const useTag = (): UseTagRetrunType => {
       let tagList = [["hot", favoreateTop10 ]];
       const result = tranferTag(groupByTagType(newTags));
       tagList = tagList.concat(result );
-      setTags(tagList );
+      setTags(tagList as any );
     }
   };
   useEffect(() => {
