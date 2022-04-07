@@ -1,16 +1,18 @@
 
+export const IS_HOT='hot'
 
 export const sourceTypes={
   'visualization':{
     title:"数据可视化"
   },
-  'hot':{
+  [IS_HOT]:{
     title:'最热'
   },
   'design':{
     title:"设计"
   }
 }
+
 
 
 export const defaultTag=[
