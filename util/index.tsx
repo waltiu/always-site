@@ -10,3 +10,7 @@ export const groupByTagType = (list:any) =>
 export const tranferTag =(tagObj: {[index:string]:Array<TagType>})=>{
     return  Object.entries(tagObj)
 }
+
+export const queryNow=()=>{
+  return  ''
+}

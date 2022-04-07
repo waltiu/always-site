@@ -5,7 +5,10 @@ import Label from '../compoments/Label'
 import Intro from '../compoments/Intro'
 import styles from './index.module.scss'
 import classNames from 'classnames'
-const Home: NextPage = () => {
+
+
+const Home: NextPage = (props) => {
+  console.log(props,'props')
   return (
     <div >
       <Head>
@@ -26,5 +29,9 @@ const Home: NextPage = () => {
     </div>
   )
 }
-
+Home.getInitialProps = async ctx => {
+  return {
+    test:1
+  };
+}
 export default Home
