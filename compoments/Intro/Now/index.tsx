@@ -1,4 +1,4 @@
-import classNames from 'classNames'
+import classNames from 'classnames'
 import cardStyles from '../../../styles/card.module.scss'
 import styles from './index.module.scss'
 const Now =(props:any)=>{
