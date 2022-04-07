@@ -1,7 +1,7 @@
 import { Input } from "antd";
 import jsonp from "jsonp";
 import styles from "./index.module.scss";
-import { BaiduSugListType, BaiduSugItemType } from "../../types/baidu";
+import { BaiduSugListType, BaiduSugItemType } from "types/baidu";
 import { useState } from "react";
 import classNames from "classnames";
 const TopNav = () => {

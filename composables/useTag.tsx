@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { defaultTag } from "../static/constant";
-import { groupByTagType, tranferTag } from "../util";
-import { TagType } from "../types/label";
+import { defaultTag } from "static/constant";
+import { groupByTagType, tranferTag } from "util/index";
+import { TagType } from "types/label";
 
  type operType='add'|'delete'|'heat'|'unHeat'
 

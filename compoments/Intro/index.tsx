@@ -1,10 +1,10 @@
-import Now from './Now'
+import Weather from './Weather'
 import Clock from './Clock'
 import styles from './index.module.scss'
 const Intro=()=>{
     return (
         <div className={styles.intro}>
-            <Now/>
+            <Weather/>
             <Clock/>
         </div>
     )

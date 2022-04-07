@@ -1,6 +1,6 @@
 import { FC } from "react"
 import styles from './index.module.scss'
-import Image from '../../../compoments/Image'
+import Image from 'compoments/Image'
 
 type TagPropsType={
     data:any

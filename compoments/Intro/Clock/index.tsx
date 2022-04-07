@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import { useEffect } from 'react'
-import cardStyles from '../../../styles/card.module.scss'
+import cardStyles from 'styles/card.module.scss'
 import styles from './index.module.scss'
 const Clock =()=>{
     useEffect(()=>{

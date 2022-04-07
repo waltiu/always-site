@@ -1,11 +1,11 @@
-import useTag from "../../composables/useTag";
+import useTag from "composables/useTag";
 import Tag from "./Tag";
-import { sourceTypes, IS_HOT } from "../../static/constant";
-import { TagType } from "../../types/label";
+import { sourceTypes, IS_HOT } from "static/constant";
+import { TagType } from "types/label";
 import Image from "../Image";
 import styles from "./index.module.scss";
-import CardStyle from "../../styles/card.module.scss";
-import hotImg from "../../static/images/hot.svg";
+import CardStyle from "styles/card.module.scss";
+import hotImg from "static/images/hot.svg";
 import classNames from "classnames";
 const Label = () => {
   const [tags, operTag] = useTag();

@@ -1,8 +1,8 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import TopNav from '../compoments/TopNav'
-import Label from '../compoments/Label'
-import Intro from '../compoments/Intro'
+import TopNav from 'compoments/TopNav'
+import Label from 'compoments/Label'
+import Intro from 'compoments/Intro'
 import styles from './index.module.scss'
 import classNames from 'classnames'
 

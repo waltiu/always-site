@@ -1,4 +1,4 @@
-import {TagType} from '../types/label'
+import {TagType} from 'types/label'
 export const groupByTagType = (list:any) =>
   list.reduce((tagObj:{
     [type:string]:Array<TagType>
@@ -11,6 +11,3 @@ export const tranferTag =(tagObj: {[index:string]:Array<TagType>})=>{
     return  Object.entries(tagObj)
 }
 
-export const queryNow=()=>{
-  return  ''
-}
