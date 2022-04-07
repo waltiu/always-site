@@ -1,12 +1,10 @@
 .label-box{
     display: flex;
     flex-wrap: wrap;
-    border-radius: 8px;
-    background-color: #fff;
     margin-bottom: 24px;
     flex-direction: column;
     position: relative;
-    overflow: hidden;
+    padding: 0px !important;
     .hot{
         position: absolute;
         left: 0px;
@@ -35,6 +33,5 @@
         padding: 12px 48px;
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
     }
 }

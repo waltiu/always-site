@@ -1,8 +1,9 @@
+import Now from './Now'
 import styles from './index.module.scss'
 const Intro=()=>{
     return (
-        <div>
-            1
+        <div className={styles.intro}>
+            <Now/>
         </div>
     )
 }
