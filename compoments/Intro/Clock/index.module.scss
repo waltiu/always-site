@@ -1,0 +1,12 @@
+.clock{
+    text-align: center;
+    overflow: visible;
+    height: 340px;
+    position: relative;
+    .content{
+        transform: scale(0.4);
+        position: absolute;
+        height: 0px;
+        width: 0px;
+    }
+}

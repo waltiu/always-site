@@ -1,4 +1,7 @@
 .intro{
     display: flex;
-    flex-direction: column
+    flex-direction: column;
+    >div{
+        margin-bottom: 24px;
+    }
 }

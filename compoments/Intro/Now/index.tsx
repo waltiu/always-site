@@ -4,7 +4,7 @@ import styles from './index.module.scss'
 const Now =(props:any)=>{
     return (
         <div className={classNames(cardStyles.card,styles.now)}>
-            {props.test}
+            北京时间2022-4-7
         </div>
     )
 }

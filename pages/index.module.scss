@@ -8,9 +8,11 @@
             margin-right: 60px;
             &:first-child{
                 width: 65%;
+                margin-left: 20px;
             }
             &:last-child{
-                width: 15%;
+                width: 360px;
+                flex-shrink: 0;
             }
         }
     }
