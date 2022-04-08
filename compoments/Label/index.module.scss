@@ -34,4 +34,13 @@
         display: flex;
         flex-wrap: wrap;
     }
+    .oper{
+        position: absolute;
+        display: none;
+    }
+    &:not(.is-hot):hover{
+        .oper{
+            display: block;
+        }
+    }
 }

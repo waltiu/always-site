@@ -15,16 +15,26 @@ const Label = () => {
         return (
           <div
             key={type}
-            className={classNames(styles["label-box"], CardStyle.card)}
+            className={classNames(
+              styles["label-box"],
+              CardStyle.card,
+              styles[type === IS_HOT ? "is-hot" : ""]
+            )}
           >
             {type === IS_HOT ? (
-              <div className={styles.hot}>
-                <Image src={hotImg} alt="" />
-              </div>
+              <>
+                <div className={styles.hot}>
+                  <Image src={hotImg} alt="" />
+                </div>
+              </>
             ) : (
-              <div className={styles.title}>
-                {sourceTypes[type as keyof typeof sourceTypes]?.title || "其他"}
-              </div>
+              <>
+                <div className={styles.title}>
+                  {sourceTypes[type as keyof typeof sourceTypes]?.title ||
+                    "其他"}
+                </div>
+                <div className={styles.oper}>11 </div>
+              </>
             )}
 
             <div className={styles.tags}>
