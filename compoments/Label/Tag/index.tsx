@@ -13,9 +13,7 @@ const Tag: FC<TagPropsType> = ({ data }) => {
       <Image src={data.icon} alt="" width={20} height={20} />
       <div className={styles.name}>
         <a href={data.link} target="_blank" rel="noreferrer">
-          <Tooltip title={data.name}>
           {data.name}
-          </Tooltip>
         </a>
       </div>
       <div className={styles.oper}>
@@ -24,7 +22,6 @@ const Tag: FC<TagPropsType> = ({ data }) => {
           content={
             <div>{data.name}-</div>
           }
-          trigger="click"
         >
           ...
         </Popover>
