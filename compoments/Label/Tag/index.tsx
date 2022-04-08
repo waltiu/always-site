@@ -16,7 +16,6 @@ const Tag: FC<TagPropsType> = ({ data }) => {
           {data.name}
         </a>
       </div>
-      -
       <div className={styles.oper}>
         <Popover
           placement="bottom"
