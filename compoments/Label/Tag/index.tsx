@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { Popover } from "antd";
 import styles from "./index.module.scss";
 import Image from "compoments/Image";
 
@@ -17,16 +16,7 @@ const Tag: FC<TagPropsType> = ({ data }) => {
         </a>
       </div>
       <div className={styles.oper}>
-        <Popover
-          placement="topRight"
-          title={<div>
-              111
-          </div>}
-          trigger="click"
-          getPopupContainer={(trigger) => trigger.parentElement as HTMLElement}
-        >
           ...
-        </Popover>
       </div>
     </div>
   );
