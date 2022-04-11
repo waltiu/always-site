@@ -19,8 +19,10 @@ const Label = () => {
       >
         <Droppable droppableId="droppable">
           {(provided, snapshot) => (
-            <div       {...provided.droppableProps}
-            ref={provided.innerRef}>
+            <div       
+            {...provided.droppableProps}
+            ref={provided.innerRef}
+            >
               {(tags || []).map(
                 ([type, value]: [string, [TagType]], index: number) => {
                   return (
@@ -53,19 +55,43 @@ const Label = () => {
                                 <div className={styles.oper}>11 </div>
                               </>
                             )}
-  
-                            <div className={styles.tags}>
-                              {value?.length &&
-                                value.map((item: TagType) => (
-                                  <div
-                                  key={item.name}
-                            
+
+                            <Droppable droppableId={type} >
+                              {(provided)=>{
+                                return (
+                                  <div className={styles.tags}
+                                  {...provided.droppableProps}
+                                  ref={provided.innerRef}
                                   >
-                                  <Tag key={item.name} data={item} />
-  
-                                  </div>
-                                ))}
-                            </div>
+                                  {value?.length &&
+                                    value.map((item: TagType,index:number) => (
+                                      <div
+                                      key={item.name}
+                                
+                                      >
+                                         <Draggable draggableId={item.name} index={index}>
+                                           {
+                                             (provided)=>{
+                                               console.log(provided,'provied')
+                                               return (
+                                                <div
+                                                ref={provided.innerRef}
+                                                {...provided.draggableProps}
+                                                {...provided.dragHandleProps}
+                                                >
+                                                <Tag key={item.name} data={item} />
+                                                </div>
+                                               )
+                                             }
+                                           }
+                                         </Draggable>
+      
+                                      </div>
+                                    ))}
+                                </div>
+                                )
+                              }}
+                            </Droppable>
                           </div>
                         )
                       }}
