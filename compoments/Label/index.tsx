@@ -26,7 +26,7 @@ const Label = () => {
               {(tags || []).map(
                 ([type, value]: [string, [TagType]], index: number) => {
                   return (
-                    <Draggable key={type} draggableId={type} index={index}>
+                    <Draggable key={type} draggableId={type||'default'} index={index} isDragDisabled={type === IS_HOT }>
                       {(provided) => {
                         return (
                           <div
@@ -69,7 +69,7 @@ const Label = () => {
                                       key={item.name}
                                 
                                       >
-                                         <Draggable draggableId={item.name} index={index}>
+                                         <Draggable draggableId={item.name} index={index} isDragDisabled={true}>
                                            {
                                              (provided)=>{
                                                console.log(provided,'provied')
