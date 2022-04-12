@@ -1,5 +1,4 @@
 import useTag from "composables/useTag";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Tag from "./Tag";
 import { sourceTypes, IS_HOT } from "static/constant";
 import { TagType } from "types/label";
@@ -8,101 +7,74 @@ import styles from "./index.module.scss";
 import CardStyle from "styles/card.module.scss";
 import hotImg from "static/images/hot.svg";
 import classNames from "classnames";
+import { ReactSortable } from "react-sortablejs";
 const Label = () => {
   const [tags, operTag] = useTag();
   return (
     <div>
-      <DragDropContext
-        onDragEnd={(value) => {
-          console.log(value, "value");
-        }}
-      >
-        <Droppable droppableId="droppable">
-          {(provided, snapshot) => (
-            <div       
-            {...provided.droppableProps}
-            ref={provided.innerRef}
-            >
-              {(tags || []).map(
-                ([type, value]: [string, [TagType]], index: number) => {
-                  return (
-                    <Draggable key={type} draggableId={type||'default'} index={index} isDragDisabled={type === IS_HOT }>
-                      {(provided) => {
-                        return (
-                          <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                            key={type}
-                            className={classNames(
-                              styles["label-box"],
-                              CardStyle.card,
-                              styles[type === IS_HOT ? "is-hot" : ""]
-                            )}
-                          >
-                            {type === IS_HOT ? (
-                              <>
-                                <div className={styles.hot}>
-                                  <Image src={hotImg} alt="" />
-                                </div>
-                              </>
-                            ) : (
-                              <>
-                                <div className={styles.title}>
-                                  {sourceTypes[type as keyof typeof sourceTypes]
-                                    ?.title || "其他"}
-                                </div>
-                                <div className={styles.oper}>11 </div>
-                              </>
-                            )}
+      {tags?.length && (
+        <ReactSortable
+          // here they are!
+          group="label"
+          animation={200}
+          delayOnTouchStart={true}
+          delay={2}
+          list={tags}
+          setList={(data) => {
+            console.log(data);
+          }}
+        >
+          {(tags || []).map(
+            ([type, value]: [string, [TagType]], index: number) => {
+              return (
+                <div
+                  key={type}
+                  className={classNames(
+                    styles["label-box"],
+                    CardStyle.card,
+                    styles[type === IS_HOT ? "is-hot" : ""]
+                  )}
+                >
+                  {type === IS_HOT ? (
+                    <>
+                      <div className={styles.hot}>
+                        <Image src={hotImg} alt="" />
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className={styles.title}>
+                        {sourceTypes[type as keyof typeof sourceTypes]?.title ||
+                          "其他"}
+                      </div>
+                      <div className={styles.oper}>11 </div>
+                    </>
+                  )}
 
-                            <Droppable droppableId={type} >
-                              {(provided)=>{
-                                return (
-                                  <div className={styles.tags}
-                                  {...provided.droppableProps}
-                                  ref={provided.innerRef}
-                                  >
-                                  {value?.length &&
-                                    value.map((item: TagType,index:number) => (
-                                      <div
-                                      key={item.name}
-                                
-                                      >
-                                         <Draggable draggableId={item.name} index={index} isDragDisabled={true}>
-                                           {
-                                             (provided)=>{
-                                               console.log(provided,'provied')
-                                               return (
-                                                <div
-                                                ref={provided.innerRef}
-                                                {...provided.draggableProps}
-                                                {...provided.dragHandleProps}
-                                                >
-                                                <Tag key={item.name} data={item} />
-                                                </div>
-                                               )
-                                             }
-                                           }
-                                         </Draggable>
-      
-                                      </div>
-                                    ))}
-                                </div>
-                                )
-                              }}
-                            </Droppable>
-                          </div>
-                        )
+                  <div className={styles.tags}>
+                    <ReactSortable
+                      group="tag"
+                      animation={200}
+                      delayOnTouchStart={true}
+                      delay={2}
+                      list={value}
+                      setList={(data) => {
+                        console.log(data);
                       }}
-                    </Draggable>
-                  );
-                }
-              )}
-            </div>
+                    >
+                      {value.map((item: TagType, index: number) => (
+                        <div key={item.name}>
+                          <Tag key={item.name} data={item} />
+                        </div>
+                      ))}
+                    </ReactSortable>
+                  </div>
+                </div>
+              );
+            }
           )}
-        </Droppable>
-      </DragDropContext>
+        </ReactSortable>
+      )}
     </div>
   );
 };

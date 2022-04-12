@@ -14,6 +14,7 @@
     "@ant-design/icons": "^4.7.0",
     "@types/jsonp": "^0.2.1",
     "@types/react-beautiful-dnd": "^13.1.2",
+    "@types/sortablejs": "^1.10.7",
     "antd": "^4.19.5",
     "axios": "^0.26.1",
     "classnames": "^2.3.1",
@@ -21,9 +22,10 @@
     "jsonp": "^0.2.1",
     "next": "12.1.4",
     "react": "18.0.0",
-    "react-beautiful-dnd": "^13.1.0",
     "react-dom": "18.0.0",
-    "sass": "^1.49.11"
+    "react-sortablejs": "^6.1.1",
+    "sass": "^1.49.11",
+    "sortablejs": "^1.15.0"
   },
   "devDependencies": {
     "@types/node": "17.0.23",

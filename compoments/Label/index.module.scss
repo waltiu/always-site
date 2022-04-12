@@ -31,8 +31,10 @@
     }
     .tags{
         padding: 12px 48px;
+       >div{
         display: flex;
         flex-wrap: wrap;
+       }
     }
     .oper{
         position: absolute;
