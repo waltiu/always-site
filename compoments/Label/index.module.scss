@@ -5,6 +5,11 @@
     flex-direction: column;
     position: relative;
     padding: 0px !important;
+    &:hover{
+        .label-drag{
+            visibility: visible;
+        }
+    }
     .hot{
         position: absolute;
         left: 0px;
@@ -28,6 +33,16 @@
             margin-right: 10px;
             width: 4px;
         }
+    }
+    .label-drag{
+        position: absolute;
+        right:16px;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        top: 16px;
+        visibility: hidden;
+      
     }
     .tags{
         padding: 12px 48px;

@@ -6,6 +6,7 @@ import Image from "../Image";
 import styles from "./index.module.scss";
 import CardStyle from "styles/card.module.scss";
 import hotImg from "static/images/hot.svg";
+import labelDaragImg from 'static/images/label-drag.svg'
 import classNames from "classnames";
 import { ReactSortable } from "react-sortablejs";
 const Label = () => {
@@ -19,6 +20,7 @@ const Label = () => {
           animation={200}
           delayOnTouchStart={true}
           delay={2}
+          handle=".label-drag"
           list={tags}
           setList={(data) => {
             console.log(data);
@@ -47,10 +49,12 @@ const Label = () => {
                         {sourceTypes[type as keyof typeof sourceTypes]?.title ||
                           "其他"}
                       </div>
-                      <div className={styles.oper}>11 </div>
+                      <div className={classNames(styles['label-drag'],'label-drag')}>
+                    <Image src={labelDaragImg}  alt=""/>
+                  </div>
                     </>
                   )}
-
+                 
                   <div className={styles.tags}>
                     <ReactSortable
                       group="tag"
