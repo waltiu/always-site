@@ -8,11 +8,22 @@ export const groupByTagType = (list:any) =>
   }, {})
 
 export const tranferTag =(tagObj: {[index:string]:Array<TagType>})=>{
-    return  Object.entries(tagObj)
+    return  Object.entries(tagObj).map(item=>{
+      return {
+        type:item[0],
+        tags:item[1]
+      }
+    })
 }
 
 
-export const queryBaiduHotList=async ()=>{
-  const result= await fetch('http://api.5cv.top/getHotList')
+export const queryBaidunewsHotList=async ()=>{
+  const result= await fetch('http://api.5cv.top/getnewsHotList')
  return result
 }
+export const  uuid=()=> {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+   var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+   return v.toString(16);
+  });
+ }

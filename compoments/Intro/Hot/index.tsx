@@ -3,7 +3,7 @@ import { Tabs, Spin } from "antd";
 import axios from "axios";
 import { HotMessageType } from "types/intro";
 import { SyncOutlined } from "@ant-design/icons";
-import { hotList } from "static/constant";
+import { newsHotList } from "static/constant";
 import { useEffect, useState } from "react";
 import Image from "compoments/Image";
 import styles from "./index.module.scss";
@@ -15,11 +15,11 @@ type HotDataType = {
 const { TabPane } = Tabs;
 
 const Hot = () => {
-  const [currentKey, setCurrentKey] = useState(hotList[0].name);
+  const [currentKey, setCurrentKey] = useState(newsHotList[0].name);
   const [hotData, setHotData] = useState<HotDataType>({});
   const [loading, setLoading] = useState(false);
   const queryData = async (isRefresh?: boolean) => {
-    const currentHot = hotList.find((item) => item.name === currentKey);
+    const currentHot = newsHotList.find((item) => item.name === currentKey);
     if (hotData[currentHot!.name] && !isRefresh) {
       return "";
     }
@@ -52,8 +52,8 @@ const Hot = () => {
             setCurrentKey(e);
           }}
         >
-          {hotList.map((item) => {
-            const hotList = hotData[item.name] || [];
+          {newsHotList.map((item) => {
+            const newsHotList = hotData[item.name] || [];
             return (
               <TabPane
                 tab={
@@ -68,8 +68,8 @@ const Hot = () => {
               >
                 <Spin spinning={loading}>
                   <div className={styles["host-list"]}>
-                    {hotList.length ? (
-                      hotList.map((item: HotMessageType, index: number) => {
+                    {newsHotList.length ? (
+                      newsHotList.map((item: HotMessageType, index: number) => {
                         return (
                           <div className={styles["hot-item"]} key={item.text}>
                             <div className={styles.index}>{index + 1}</div>
