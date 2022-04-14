@@ -27,6 +27,7 @@ const Label = () => {
           setList={(data) => {
             operLabel(data, "sortLabel");
           }}
+          filter=".is-hot"
         >
           {(labels || []).map((label: LabelType, index: number) => {
             const { type = "其他", tags } = label;
@@ -36,6 +37,7 @@ const Label = () => {
                 className={classNames(
                   styles["label-box"],
                   CardStyle.card,
+                  type === HOT_LABEL ? "is-hot" : "",
                   styles[type === HOT_LABEL ? "is-hot" : ""]
                 )}
               >
@@ -65,7 +67,7 @@ const Label = () => {
                     onStart={()=>{
                       sortQueue=[]
                     }}
-                    setList={(data,_,{dragging}) => {
+                    setList={(data,tag,{dragging}) => {
                       if(dragging&&JSON.stringify(dragging.props.list)!==JSON.stringify(data)){
                         sortQueue.push({
                           index,
@@ -75,7 +77,7 @@ const Label = () => {
                     }}
                   >
                     {(tags||[]).map((item: TagType, index: number) => (
-                      <div key={item.name}>
+                      <div key={`${item.name}-${index}`} >
                         <Tag key={item.name} data={item} />
                       </div>
                     ))}

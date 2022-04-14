@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { defaultTag } from "static/constant";
-import { uuid } from "util/index";
+import { uuid,uniqueTags } from "util/index";
 import {
   TagType,
   LabelType,
   useLabelRetrunType,
   SortQueueType,
 } from "types/label";
-import { json } from "node:stream/consumers";
 
 const CACHE_LABELS_KEY='cache-labels'
 
@@ -15,7 +14,7 @@ const useLabel = (): useLabelRetrunType => {
   const [labels, setLables] = useState<Array<LabelType>>([]);
 
   const updateLabels=(newLabels:Array<LabelType>)=>{
-      setLables(newLabels)
+      setLables(uniqueTags(newLabels))
       localStorage.setItem(CACHE_LABELS_KEY,JSON.stringify(newLabels))
   }
 
@@ -36,6 +35,9 @@ const useLabel = (): useLabelRetrunType => {
     updateLabels(data);
   };
   const sortTag = (params: SortQueueType) => {
+    if(params[0].index===0){
+      params=[params[0]]
+    }
     const newLabels = [...labels];
     params.map((item) => {
       newLabels[item.index].tags = item.data;

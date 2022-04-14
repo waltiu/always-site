@@ -1,4 +1,4 @@
-import { TagType } from "types/label";
+import { LabelType } from "types/label";
 
 export const queryBaidunewsHotList = async () => {
   const result = await fetch("http://api.5cv.top/getnewsHotList");
@@ -11,3 +11,26 @@ export const uuid = () => {
     return v.toString(16);
   });
 };
+
+export const uniqueTags=(data:Array<LabelType>)=>{
+  
+    return data.map((item:LabelType)=>{
+      console.log(item)
+      return {
+        ...item,
+        tags:uniqueKey(item.tags,'name')
+      }
+    })
+}
+
+
+
+export const uniqueKey=(arr:any[],key:string)=> {
+  let map = new Map()
+  arr.forEach((item)=>{
+    if (!map.has(item[key])){
+      map.set(item[key],item)
+    }
+  })
+  return Array.from(map.values())
+}
