@@ -11,7 +11,10 @@ export  type LabelType={
   id:string,
   tags:TagType[]
 }
-
+export type sortQueueType={
+ index:number,
+ data:TagType[]
+}[]
 
 
 export type useLabelRetrunType = [

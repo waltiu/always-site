@@ -1,27 +1,31 @@
 import useLabel from "composables/useLabel";
 import Tag from "./Tag";
 import { HOT_LABEL, OTHER_LABEL } from "static/constant";
-import { TagType, LabelType } from "types/label";
+import { TagType, LabelType,sortQueueType } from "types/label";
 import Image from "../Image";
 import styles from "./index.module.scss";
 import CardStyle from "styles/card.module.scss";
 import hotImg from "static/images/hot.svg";
-import labelDaragImg from "static/images/label-drag.svg";
 import classNames from "classnames";
 import { ReactSortable } from "react-sortablejs";
+
+
+let sortQueue:sortQueueType=[]
+
 const Label = () => {
   const [labels, operLabel] = useLabel();
   return (
     <div>
       {labels?.length && (
         <ReactSortable
-          group="label"
+          group={{name: 'people', pull: true}}
           animation={200}
           delay={2}
           delayOnTouchOnly={true}
-          handle=".label-drag"
+          forceFallback={true}
           list={labels}
           setList={(data) => {
+            console.log(data,'data')
             operLabel(data, "sortLabel");
           }}
           filter=".is-hot"
@@ -46,32 +50,33 @@ const Label = () => {
                 ) : (
                   <>
                     <div className={styles.title}>{type || OTHER_LABEL}</div>
-                    <div
-                      className={classNames(styles["label-drag"], "label-drag")}
-                    >
-                      <Image src={labelDaragImg} alt="" />
-                    </div>
                   </>
                 )}
 
                 <div className={styles.tags}>
                   <ReactSortable
-                    group="tag"
+                    group={{name: 'child', pull: true}}
                     animation={200}
                     delay={2}
-                    list={tags}
+                    list={tags||[]}
+                    forceFallback={true}
                     delayOnTouchOnly={true}
-                    setList={(data) => {
-                      operLabel(
-                        {
-                          type,
-                          data,
-                        },
-                        "sortTag"
-                      );
+                    onEnd={()=>{
+                      operLabel(sortQueue,'sortTag')
+                    }}
+                    onStart={()=>{
+                      sortQueue=[]
+                    }}
+                    setList={(data,_,{dragging}) => {
+                      if(dragging&&JSON.stringify(dragging.props.list)!==JSON.stringify(data)){
+                        sortQueue.push({
+                          index,
+                          data
+                        })
+                      }
                     }}
                   >
-                    {tags.map((item: TagType, index: number) => (
+                    {(tags||[]).map((item: TagType, index: number) => (
                       <div key={item.name}>
                         <Tag key={item.name} data={item} />
                       </div>

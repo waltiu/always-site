@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { defaultTag } from "static/constant";
 import { uuid } from "util/index";
-import { TagType,LabelType,useLabelRetrunType } from "types/label";
+import { TagType,LabelType,useLabelRetrunType,sortQueueType } from "types/label";
 
 
 const useLabel = (): useLabelRetrunType => {
@@ -17,11 +17,19 @@ const useLabel = (): useLabelRetrunType => {
 
   const unHeatTag = (tag:TagType) => {};
 
+  const addLabel=(data:sortQueueType)=>{
+    console.log()
+  }
+
   const sortLabel =(data:Array<LabelType>)=>{
     setLables(data)
   }
-  const sortTag =(data:TagType[])=>{
-    console.log(data,'data')
+  const sortTag =(params:sortQueueType)=>{
+    const newLabels=[...labels]
+    params.map(item=>{
+      newLabels[item.index].tags=item.data
+    })
+ setLables(newLabels)
   }
 
   const initTags = () => {
@@ -62,7 +70,7 @@ const useLabel = (): useLabelRetrunType => {
     if(oper==='sortLabel'){
       sortLabel(data)
     }
-    if(oper='sortTag'){
+    if(oper==='sortTag'){
       sortTag(data)
     }
   }];
