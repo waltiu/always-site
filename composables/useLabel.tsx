@@ -5,7 +5,7 @@ import {
   TagType,
   LabelType,
   useLabelRetrunType,
-  sortQueueType,
+  SortQueueType,
 } from "types/label";
 import { json } from "node:stream/consumers";
 
@@ -28,14 +28,14 @@ const useLabel = (): useLabelRetrunType => {
 
   const unHeatTag = (tag: TagType) => {};
 
-  const addLabel = (data: sortQueueType) => {
+  const addLabel = (data: SortQueueType) => {
     console.log();
   };
 
   const sortLabel = (data: Array<LabelType>) => {
     updateLabels(data);
   };
-  const sortTag = (params: sortQueueType) => {
+  const sortTag = (params: SortQueueType) => {
     const newLabels = [...labels];
     params.map((item) => {
       newLabels[item.index].tags = item.data;

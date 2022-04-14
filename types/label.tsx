@@ -11,7 +11,7 @@ export  type LabelType={
   id:string,
   tags:TagType[]
 }
-export type sortQueueType={
+export type SortQueueType={
  index:number,
  data:TagType[]
 }[]

@@ -1,7 +1,7 @@
 import useLabel from "composables/useLabel";
 import Tag from "./Tag";
 import { HOT_LABEL, OTHER_LABEL } from "static/constant";
-import { TagType, LabelType,sortQueueType } from "types/label";
+import { TagType, LabelType,SortQueueType } from "types/label";
 import Image from "../Image";
 import styles from "./index.module.scss";
 import CardStyle from "styles/card.module.scss";
@@ -10,7 +10,7 @@ import classNames from "classnames";
 import { ReactSortable } from "react-sortablejs";
 
 
-let sortQueue:sortQueueType=[]  // 跨label拖拽进行，将多个list统一更新
+let sortQueue:SortQueueType=[]  // 跨label拖拽进行，将多个list统一更新
 
 const Label = () => {
   const [labels, operLabel] = useLabel();
