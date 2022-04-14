@@ -10,7 +10,7 @@ import classNames from "classnames";
 import { ReactSortable } from "react-sortablejs";
 
 
-let sortQueue:sortQueueType=[]
+let sortQueue:sortQueueType=[]  // 跨label拖拽进行，将多个list统一更新
 
 const Label = () => {
   const [labels, operLabel] = useLabel();
@@ -18,17 +18,15 @@ const Label = () => {
     <div>
       {labels?.length && (
         <ReactSortable
-          group={{name: 'people', pull: true}}
+          group={{name: 'labels', pull: true}}
           animation={200}
           delay={2}
           delayOnTouchOnly={true}
           forceFallback={true}
           list={labels}
           setList={(data) => {
-            console.log(data,'data')
             operLabel(data, "sortLabel");
           }}
-          filter=".is-hot"
         >
           {(labels || []).map((label: LabelType, index: number) => {
             const { type = "其他", tags } = label;
@@ -55,7 +53,7 @@ const Label = () => {
 
                 <div className={styles.tags}>
                   <ReactSortable
-                    group={{name: 'child', pull: true}}
+                    group={{name: 'tags', pull: true}}
                     animation={200}
                     delay={2}
                     list={tags||[]}
