@@ -55,6 +55,8 @@
     .oper{
         position: absolute;
         display: none;
+        right: 16px;
+        top: 16px;
     }
     &:not(.is-hot):hover{
         .oper{

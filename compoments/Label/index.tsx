@@ -7,6 +7,7 @@ import styles from "./index.module.scss";
 import CardStyle from "styles/card.module.scss";
 import hotImg from "static/images/hot.svg";
 import classNames from "classnames";
+import LabelOperCard from "./OperCard";
 import { ReactSortable } from "react-sortablejs";
 
 
@@ -33,7 +34,7 @@ const Label = () => {
           filter=".is-hot"
         >
           {(labels || []).map((label: LabelType, index: number) => {
-            const { type = "其他", tags } = label;
+            const { type = OTHER_LABEL, tags } = label;
             return (
               <div
                 key={type}
@@ -55,7 +56,9 @@ const Label = () => {
                     <div className={styles.title}>{type || OTHER_LABEL}</div>
                   </>
                 )}
-
+                <div className={styles.oper}>
+                    <LabelOperCard/>
+                  </div>
                 <div className={styles.tags}>
                   <ReactSortable
                     group={{name: 'tags', pull: true}}
