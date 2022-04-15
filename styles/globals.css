@@ -1,6 +1,5 @@
 @import "~antd/dist/antd.css";
-html,
-body {
+#__next {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -20,4 +19,27 @@ a {
 }
 .ant-tabs > .ant-tabs-nav .ant-tabs-nav-wrap{
   justify-content: center !important;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 12px;
+  background-color: #fff;
+}
+
+/* 滚动条里的小块 */
+::-webkit-scrollbar-thumb {
+  display: block;
+  min-width: 8px;
+  min-height: 12px;
+  background-color: rgb(217 217 217);
+  border-radius: 6px;
+}
+
+/* 鼠标悬浮 */
+::-webkit-scrollbar-thumb:hover {
+  display: block;
+  min-width: 8px;
+  min-height: 12px;
+  background-color: rgb(159 159 159);
+  border-radius: 6px;
 }
