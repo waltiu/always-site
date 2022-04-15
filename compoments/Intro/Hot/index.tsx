@@ -4,7 +4,7 @@ import axios from "axios";
 import { HotMessageType } from "types/intro";
 import { SyncOutlined } from "@ant-design/icons";
 import { newsHotList } from "static/constant";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "compoments/Image";
 import styles from "./index.module.scss";
 import cardStyles from "styles/card.module.scss";
@@ -14,10 +14,16 @@ type HotDataType = {
 };
 const { TabPane } = Tabs;
 
+let timer:any=''
+
 const Hot = () => {
   const [currentKey, setCurrentKey] = useState(newsHotList[0].name);
   const [hotData, setHotData] = useState<HotDataType>({});
   const [loading, setLoading] = useState(false);
+
+  const currentKeyRef=useRef()
+  currentKeyRef.current=currentKey as any
+
   const queryData = async (isRefresh?: boolean) => {
     const currentHot = newsHotList.find((item) => item.name === currentKey);
     if (hotData[currentHot!.name] && !isRefresh) {
@@ -33,12 +39,32 @@ const Hot = () => {
     });
   };
 
+  const setIntervalChange=()=>{
+    if(newsHotList.length>1){
+      timer=setInterval(()=>{
+        const currentIndex=newsHotList.findIndex(item=>item.name===currentKeyRef.current)
+        console.log(currentIndex,currentKeyRef.current)
+        const updateName=currentIndex===newsHotList.length-1?newsHotList[0].name:newsHotList[currentIndex+1].name
+        console.log(updateName,'updataname')
+        setCurrentKey(updateName)
+      },5000)
+    }
+
+  }
   useEffect(() => {
     queryData();
   }, [currentKey]);
-  console.log(hotData, "hotdata");
+  useEffect(()=>{
+    setIntervalChange()
+  },[])
   return (
-    <div className={classNames(cardStyles.card, styles.hot)}>
+    <div className={classNames(cardStyles.card, styles.hot)} onMouseEnter={()=>{
+      clearInterval(timer)
+    }}
+    onMouseLeave={()=>{
+      setIntervalChange()
+    }}
+    >
       <div className={styles.label}>
         <div className={styles.title}>热搜榜</div>
         <div className={styles.refresh} onClick={() => queryData(true)}>
@@ -51,6 +77,7 @@ const Hot = () => {
           onChange={(e) => {
             setCurrentKey(e);
           }}
+          activeKey={currentKey}
         >
           {newsHotList.map((item) => {
             const newsHotList = hotData[item.name] || [];

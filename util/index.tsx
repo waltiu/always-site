@@ -15,7 +15,6 @@ export const uuid = () => {
 export const uniqueTags=(data:Array<LabelType>)=>{
   
     return data.map((item:LabelType)=>{
-      console.log(item)
       return {
         ...item,
         tags:uniqueKey(item.tags,'name')
