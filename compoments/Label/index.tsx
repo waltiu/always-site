@@ -73,7 +73,7 @@ const Label = () => {
                     onStart={()=>{
                       sortQueue=[]
                     }}
-                    setList={(data,tag,{dragging}) => {
+                    setList={(data,_,{dragging}) => {
                       if(dragging&&JSON.stringify(dragging.props.list)!==JSON.stringify(data)){
                         sortQueue.push({
                           index,
