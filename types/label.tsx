@@ -19,5 +19,6 @@ export type SortQueueType={
 
 export type useLabelRetrunType = [
  tags:Array<LabelType> ,
- method: (tag:any,oper:operType) => void,
+ method:SetLabelMethodType
 ];
+export type SetLabelMethodType= (tag:any,oper?:operType) => void

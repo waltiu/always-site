@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { defaultTag } from "static/constant";
-import { uuid,uniqueTags } from "util/index";
+import { uuid, uniqueTags } from "util/index";
 import {
   TagType,
   LabelType,
@@ -8,15 +8,15 @@ import {
   SortQueueType,
 } from "types/label";
 
-const CACHE_LABELS_KEY='cache-labels'
+const CACHE_LABELS_KEY = "cache-labels";
 
 const useLabel = (): useLabelRetrunType => {
   const [labels, setLables] = useState<Array<LabelType>>([]);
 
-  const updateLabels=(newLabels:Array<LabelType>)=>{
-      setLables(uniqueTags(newLabels))
-      localStorage.setItem(CACHE_LABELS_KEY,JSON.stringify(newLabels))
-  }
+  const updateLabels = (newLabels: Array<LabelType>) => {
+    setLables(uniqueTags(newLabels));
+    localStorage.setItem(CACHE_LABELS_KEY, JSON.stringify(newLabels));
+  };
 
   const addTag = (tag: TagType) => {};
   const deleteTag = (tag: TagType) => {};
@@ -35,33 +35,35 @@ const useLabel = (): useLabelRetrunType => {
     updateLabels(data);
   };
   const sortTag = (params: SortQueueType) => {
-    if(params[0].index===0){
-      params=[params[0]]
+    if (params[0].index === 0) {
+      params = [params[0]];
     }
     const newLabels = [...labels];
     params.map((item) => {
       newLabels[item.index].tags = item.data;
     });
-    updateLabels(newLabels)
+    updateLabels(newLabels);
   };
 
   const initTags = () => {
     if (labels.length) {
       return "";
     }
-    const cacheLabels=localStorage.getItem(CACHE_LABELS_KEY)
-    const newLabels =(cacheLabels?JSON.parse(cacheLabels): defaultTag).map((item:LabelType) => {
-      return {
-        ...item,
-        id: `label-${uuid()}`,
-        tags: (item.tags || []).map((tag) => {
-          return {
-            ...tag,
-            id: `tag-${uuid()}`,
-          };
-        }),
-      };
-    });
+    const cacheLabels = localStorage.getItem(CACHE_LABELS_KEY);
+    const newLabels = (cacheLabels ? JSON.parse(cacheLabels) : defaultTag).map(
+      (item: LabelType) => {
+        return {
+          ...item,
+          id: `label-${uuid()}`,
+          tags: (item.tags || []).map((tag) => {
+            return {
+              ...tag,
+              id: `tag-${uuid()}`,
+            };
+          }),
+        };
+      }
+    );
     updateLabels(newLabels);
   };
   useEffect(() => {
@@ -73,21 +75,16 @@ const useLabel = (): useLabelRetrunType => {
     (data, oper) => {
       if (oper === "add") {
         addTag(data);
-      }
-      if (oper === "delete") {
+      } else if (oper === "delete") {
         deleteTag(data);
-      }
-      if (oper === "heat") {
+      } else if (oper === "heat") {
         heatTag(data);
-      }
-      if (oper === "unHeat") {
+      } else if (oper === "unHeat") {
         unHeatTag(data);
-      }
-      if (oper === "sortLabel") {
-        sortLabel(data);
-      }
-      if (oper === "sortTag") {
+      } else if (oper === "sortTag") {
         sortTag(data);
+      } else {
+        sortLabel(data);
       }
     },
   ];

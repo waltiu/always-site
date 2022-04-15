@@ -2,6 +2,7 @@ import useLabel from "composables/useLabel";
 import Tag from "./Tag";
 import { HOT_LABEL, OTHER_LABEL } from "static/constant";
 import { TagType, LabelType,SortQueueType } from "types/label";
+import LabelTitle from "./Title";
 import Image from "../Image";
 import styles from "./index.module.scss";
 import CardStyle from "styles/card.module.scss";
@@ -28,7 +29,7 @@ const Label = () => {
           setList={(data) => {
             // 热门禁止拖拽
             if(data[0].type===HOT_LABEL){
-             operLabel(data, "sortLabel");    
+             operLabel(data);    
             }
           }}
           filter=".is-hot"
@@ -53,7 +54,8 @@ const Label = () => {
                   </>
                 ) : (
                   <>
-                    <div className={styles.title}>{type || OTHER_LABEL}</div>
+                  <LabelTitle label={label} labels={labels} operLabel={operLabel}/>
+                
                     <div className={styles.oper}>
                     <LabelOperCard/>
                   </div>
