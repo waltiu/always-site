@@ -54,11 +54,12 @@ const Label = () => {
                 ) : (
                   <>
                     <div className={styles.title}>{type || OTHER_LABEL}</div>
-                  </>
-                )}
-                <div className={styles.oper}>
+                    <div className={styles.oper}>
                     <LabelOperCard/>
                   </div>
+                  </>
+                )}
+           
                 <div className={styles.tags}>
                   <ReactSortable
                     group={{name: 'tags', pull: true}}
