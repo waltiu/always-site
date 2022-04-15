@@ -43,9 +43,7 @@ const Hot = () => {
     if(newsHotList.length>1){
       timer=setInterval(()=>{
         const currentIndex=newsHotList.findIndex(item=>item.name===currentKeyRef.current)
-        console.log(currentIndex,currentKeyRef.current)
         const updateName=currentIndex===newsHotList.length-1?newsHotList[0].name:newsHotList[currentIndex+1].name
-        console.log(updateName,'updataname')
         setCurrentKey(updateName)
       },5000)
     }

@@ -25,7 +25,10 @@ const Label = () => {
           forceFallback={true}
           list={labels}
           setList={(data) => {
-            operLabel(data, "sortLabel");
+            // 热门禁止拖拽
+            if(data[0].type===HOT_LABEL){
+             operLabel(data, "sortLabel");    
+            }
           }}
           filter=".is-hot"
         >
