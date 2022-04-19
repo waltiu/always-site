@@ -1,9 +1,7 @@
 import { CloseOutlined, MoreOutlined,PlusOutlined,EditOutlined,MinusOutlined } from "@ant-design/icons";
 import classNames from "classnames";
-import { useState } from "react";
 import styles from "./index.module.scss";
-const LabelOperCard = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const LabelOperCard = ({isOpen,setIsOperingType}:{isOpen:boolean,setIsOperingType:()=>void}) => {
   return (
     <div className={classNames(styles.oper, isOpen ? styles["is-open"] : "")}>
       <div className={styles.detail}>
@@ -26,8 +24,7 @@ const LabelOperCard = () => {
       <div
         className={styles["oper-icon"]}
         onClick={() => {
-          console.log(11);
-          setIsOpen(!isOpen);
+          setIsOperingType();
         }}
       >
         <span>{isOpen ? <CloseOutlined /> : <MoreOutlined />}</span>

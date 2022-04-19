@@ -1,4 +1,5 @@
 import useLabel from "composables/useLabel";
+import { useState } from "react";
 import Tag from "./Tag";
 import { HOT_LABEL, OTHER_LABEL } from "static/constant";
 import { TagType, LabelType,SortQueueType } from "types/label";
@@ -16,6 +17,7 @@ let sortQueue:SortQueueType=[]  // 跨label拖拽进行，将多个list统一更
 
 const Label = () => {
   const [labels, operLabel] = useLabel();
+  const [isOperingType,setIsOperingType]=useState<null|string>(null)
   return (
     <div>
       {labels?.length && (
@@ -58,7 +60,10 @@ const Label = () => {
                   <LabelTitle label={label} labels={labels} operLabel={operLabel}/>
                 
                     <div className={classNames(styles.oper,'oper')}>
-                    <LabelOperCard/>
+                    <LabelOperCard  isOpen={isOperingType==type} setIsOperingType={()=>{
+                      console.log(type,'type')
+                      setIsOperingType(type===isOperingType?null:type)
+                    }} />
                   </div>
                   </>
                 )}
