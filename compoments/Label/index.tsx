@@ -26,6 +26,7 @@ const Label = () => {
           delayOnTouchOnly={true}
           forceFallback={true}
           list={labels}
+          handle=".oper"
           setList={(data) => {
             // 热门禁止拖拽
             if(data[0].type===HOT_LABEL){
@@ -56,7 +57,7 @@ const Label = () => {
                   <>
                   <LabelTitle label={label} labels={labels} operLabel={operLabel}/>
                 
-                    <div className={styles.oper}>
+                    <div className={classNames(styles.oper,'oper')}>
                     <LabelOperCard/>
                   </div>
                   </>
