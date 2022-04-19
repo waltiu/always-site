@@ -14,11 +14,13 @@ const LabelOperCard= ()=>{
                         +
                     </span>
             </div>
-            <div className={styles.detail}>
+      
+                <div className={styles.detail}>
                 <div className={styles.icon}>+</div>
                 <div className={styles.icon}>-</div>
                 <div  className={styles.icon}>N</div>
             </div>
+      
         </div>
     )
 }
