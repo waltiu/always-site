@@ -43,6 +43,7 @@
       height: 32px;
       background-color: #fff;
       cursor: pointer;
+    font-weight: 600px;
     }
   }
   &.is-open {
@@ -54,14 +55,14 @@
           transform: rotate(-45deg);
           transition-delay: 500ms;
           span {
-            transform: rotate(45deg);
+            transform: rotate(22deg);
           }
         }
         &:last-child {
           transform: rotate(-90deg);
           transition-delay: 500ms;
           span {
-            transform: rotate(90deg);
+            transform: rotate(45deg);
           }
         }
       }
