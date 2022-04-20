@@ -31,9 +31,7 @@ const useLabel = (): useLabelRetrunType => {
     console.log();
   };
 
-  const sortLabel = (data: Array<LabelType>) => {
-    updateLabels(data);
-  };
+
   const sortTag = (params: SortQueueType) => {
     if (params[0].index === 0) {
       params = [params[0]];
@@ -70,21 +68,22 @@ const useLabel = (): useLabelRetrunType => {
     initTags();
   });
 
+   const operMethodObject={
+    addTag:addTag,
+    deleteTag:deleteTag,
+    heatTag:heatTag,
+    sortTag:sortTag,
+    addLabel:()=>{},
+    deleteLabel:()=>{}
+  }
+
   return [
     labels,
-    (data, oper) => {
-      if (oper === "add") {
-        addTag(data);
-      } else if (oper === "delete") {
-        deleteTag(data);
-      } else if (oper === "heat") {
-        heatTag(data);
-      } else if (oper === "unHeat") {
-        unHeatTag(data);
-      } else if (oper === "sortTag") {
-        sortTag(data);
-      } else {
-        sortLabel(data);
+    (data, oper   ) => {
+      if(oper&&operMethodObject[oper]){
+        operMethodObject[oper](data)
+      }else{
+        updateLabels(data)
       }
     },
   ];

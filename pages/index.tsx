@@ -30,6 +30,7 @@ const Home: NextPage = (props) => {
     </div>
   )
 }
+// page目录下的组件，才会调用这个方法
 Home.getInitialProps = async ctx => {
   return {
   };

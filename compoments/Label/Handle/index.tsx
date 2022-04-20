@@ -1,11 +1,14 @@
 import { CloseOutlined, MoreOutlined,PlusOutlined,EditOutlined,MinusOutlined } from "@ant-design/icons";
 import classNames from "classnames";
+import { SetLabelMethodType } from "types/label";
 import styles from "./index.module.scss";
-const LabelOperCard = ({isOpen,setIsOperingType}:{isOpen:boolean,setIsOperingType:()=>void}) => {
+const Handle = ({isOpen,index,setIsOperingType,operLabel}:{isOpen:boolean,index:number,setIsOperingType:()=>void,operLabel:SetLabelMethodType}) => {
   return (
     <div className={classNames(styles.oper, isOpen ? styles["is-open"] : "")}>
       <div className={styles.detail}>
-        <div className={styles.icon}>
+        <div className={styles.icon} onClick={()=>{
+          operLabel(index,'addLabel')
+        }}>
           <span>
           <PlusOutlined />
           </span>
@@ -17,7 +20,7 @@ const LabelOperCard = ({isOpen,setIsOperingType}:{isOpen:boolean,setIsOperingTyp
         </div>
         <div className={styles.icon}>
           <span>
-          <MinusOutlined />
+          <MinusOutlined  />
           </span>
         </div>
       </div>
@@ -32,4 +35,4 @@ const LabelOperCard = ({isOpen,setIsOperingType}:{isOpen:boolean,setIsOperingTyp
     </div>
   );
 };
-export default LabelOperCard;
+export default Handle;

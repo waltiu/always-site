@@ -1,7 +1,7 @@
 import { LabelType, SetLabelMethodType } from "types/label";
 import { OTHER_LABEL } from "static/constant";
 import styles from "./index.module.scss";
-import { useState, FocusEvent, KeyboardEvent, useRef } from "react";
+import { useState, FocusEvent, useRef } from "react";
 import { Input, InputRef } from "antd";
 const LabelTitle = ({
   label,

@@ -2,27 +2,26 @@ import useLabel from "composables/useLabel";
 import { useState } from "react";
 import Tag from "./Tag";
 import { HOT_LABEL, OTHER_LABEL } from "static/constant";
-import { TagType, LabelType,SortQueueType } from "types/label";
+import { TagType, LabelType, SortQueueType } from "types/label";
 import LabelTitle from "./Title";
 import Image from "../Image";
 import styles from "./index.module.scss";
 import CardStyle from "styles/card.module.scss";
 import hotImg from "static/images/hot.svg";
 import classNames from "classnames";
-import LabelOperCard from "./OperCard";
+import Handle from "./Handle";
 import { ReactSortable } from "react-sortablejs";
 
-
-let sortQueue:SortQueueType=[]  // 跨label拖拽进行，将多个list统一更新
+let sortQueue: SortQueueType = []; // 跨label拖拽进行，将多个list统一更新
 
 const Label = () => {
   const [labels, operLabel] = useLabel();
-  const [isOperingType,setIsOperingType]=useState<null|string>(null)
+  const [isOperingType, setIsOperingType] = useState<null | string>(null);
   return (
     <div>
       {labels?.length && (
         <ReactSortable
-          group={{name: 'labels', pull: true}}
+          group={{ name: "labels", pull: true }}
           animation={200}
           delay={2}
           delayOnTouchOnly={true}
@@ -31,8 +30,8 @@ const Label = () => {
           handle=".oper"
           setList={(data) => {
             // 热门禁止拖拽
-            if(data[0].type===HOT_LABEL){
-             operLabel(data);    
+            if (data[0].type === HOT_LABEL) {
+              operLabel(data);
             }
           }}
           filter=".is-hot"
@@ -57,42 +56,57 @@ const Label = () => {
                   </>
                 ) : (
                   <>
-                  <LabelTitle label={label} labels={labels} operLabel={operLabel}/>
-                
-                    <div className={classNames(styles.oper,'oper')}>
-                    <LabelOperCard  isOpen={isOperingType==type} setIsOperingType={()=>{
-                      console.log(type,'type')
-                      setIsOperingType(type===isOperingType?null:type)
-                    }} />
-                  </div>
+                    <LabelTitle
+                      label={label}
+                      labels={labels}
+                      operLabel={operLabel}
+                    />
+
+                    <div className={classNames(styles.oper, "oper")}>
+                      <Handle
+                        index={index}
+                        isOpen={isOperingType == type}
+                        setIsOperingType={() => {
+                          console.log(type, "type");
+                          setIsOperingType(
+                            type === isOperingType ? null : type
+                          );
+                        }}
+                        operLabel={operLabel}
+                      />
+                    </div>
                   </>
                 )}
-           
+
                 <div className={styles.tags}>
                   <ReactSortable
-                    group={{name: 'tags', pull: true}}
+                    group={{ name: "tags", pull: true }}
                     animation={200}
                     delay={2}
-                    list={tags||[]}
+                    list={tags || []}
                     forceFallback={true}
                     delayOnTouchOnly={true}
-                    onEnd={()=>{
-                      operLabel(sortQueue,'sortTag')
+                    onEnd={() => {
+                      operLabel(sortQueue, "sortTag");
                     }}
-                    onStart={()=>{
-                      sortQueue=[]
+                    onStart={() => {
+                      sortQueue = [];
                     }}
-                    setList={(data,_,{dragging}) => {
-                      if(dragging&&JSON.stringify(dragging.props.list)!==JSON.stringify(data)){
+                    setList={(data, _, { dragging }) => {
+                      if (
+                        dragging &&
+                        JSON.stringify(dragging.props.list) !==
+                          JSON.stringify(data)
+                      ) {
                         sortQueue.push({
                           index,
-                          data
-                        })
+                          data,
+                        });
                       }
                     }}
                   >
-                    {(tags||[]).map((item: TagType, index: number) => (
-                      <div key={`${item.name}-${index}`} >
+                    {(tags || []).map((item: TagType, index: number) => (
+                      <div key={`${item.name}-${index}`}>
                         <Tag key={item.name} data={item} />
                       </div>
                     ))}
