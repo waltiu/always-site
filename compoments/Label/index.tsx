@@ -14,7 +14,7 @@ import { ReactSortable } from "react-sortablejs";
 
 let sortQueue: SortQueueType = []; // 跨label拖拽进行，将多个list统一更新
 
-const filterDragItem='.is-hot' // 最热特殊标记，并禁止操作
+const filterDragItem = ".is-hot"; // 最热特殊标记，并禁止操作
 
 const Label = () => {
   const [labels, operLabel] = useLabel();
@@ -39,7 +39,7 @@ const Label = () => {
           filter={filterDragItem}
         >
           {(labels || []).map((label: LabelType, index: number) => {
-            const { title = OTHER_LABEL, tags,id } = label;
+            const { title = OTHER_LABEL, tags, id } = label;
             return (
               <div
                 key={id}
@@ -47,7 +47,7 @@ const Label = () => {
                   styles["label-box"],
                   CardStyle.card,
                   title === HOT_LABEL ? filterDragItem : "",
-                  styles[title === HOT_LABEL ?filterDragItem : ""]
+                  styles[title === HOT_LABEL ? filterDragItem : ""]
                 )}
               >
                 {title === HOT_LABEL ? (
@@ -70,9 +70,7 @@ const Label = () => {
                         title={title}
                         isOpen={isOperingId == id}
                         setIsOperingId={() => {
-                          setIsOperingId(
-                            id === isOperingId ? null : id
-                          );
+                          setIsOperingId(id === isOperingId ? null : id);
                         }}
                         operLabel={operLabel}
                       />
