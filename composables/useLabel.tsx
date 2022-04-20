@@ -31,7 +31,7 @@ const useLabel = (): useLabelRetrunType => {
       const newLabels=[...labels]
       newLabels.splice(index+1,0,{
         type:'新增',
-        id:uuid(),
+        id:`label-${uuid()}`,
         tags:[]
       })
       updateLabels(newLabels)
