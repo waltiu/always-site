@@ -21,4 +21,4 @@ export type useLabelRetrunType = [
  tags:Array<LabelType> ,
  method:SetLabelMethodType
 ];
-export type SetLabelMethodType= (tag:any,oper?:string) => void
+export type SetLabelMethodType= (tag:any,oper?:operType) => void

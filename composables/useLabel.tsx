@@ -27,10 +27,25 @@ const useLabel = (): useLabelRetrunType => {
 
   const unHeatTag = (tag: TagType) => {};
 
-  const addLabel = (data: SortQueueType) => {
-    console.log();
+  const addLabel = (index:number) => {
+      const newLabels=[...labels]
+      newLabels.splice(index+1,0,{
+        type:'新增',
+        id:uuid(),
+        tags:[]
+      })
+      updateLabels(newLabels)
   };
 
+  const deleteLabel=(type:string)=>{
+    const labelIndex=labels.findIndex(item=>item.type===type) 
+    const newLabels=[...labels]
+    if(labelIndex>0){
+      newLabels.splice(labelIndex,1)
+    }
+    updateLabels(newLabels)
+
+  }
 
   const sortTag = (params: SortQueueType) => {
     if (params[0].index === 0) {
@@ -73,15 +88,15 @@ const useLabel = (): useLabelRetrunType => {
     deleteTag:deleteTag,
     heatTag:heatTag,
     sortTag:sortTag,
-    addLabel:()=>{},
-    deleteLabel:()=>{}
+    addLabel:addLabel,
+    deleteLabel:deleteLabel
   }
 
   return [
     labels,
-    (data, oper   ) => {
-      if(oper&&operMethodObject[oper]){
-        operMethodObject[oper](data)
+    (data, oper) => {
+      if(oper&&operMethodObject[oper as keyof typeof operMethodObject]){
+        operMethodObject[oper  as keyof typeof operMethodObject](data)
       }else{
         updateLabels(data)
       }

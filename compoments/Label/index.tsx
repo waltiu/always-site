@@ -65,6 +65,7 @@ const Label = () => {
                     <div className={classNames(styles.oper, "oper")}>
                       <Handle
                         index={index}
+                        type={type}
                         isOpen={isOperingType == type}
                         setIsOperingType={() => {
                           console.log(type, "type");

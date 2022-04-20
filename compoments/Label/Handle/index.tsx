@@ -2,7 +2,7 @@ import { CloseOutlined, MoreOutlined,PlusOutlined,EditOutlined,MinusOutlined } f
 import classNames from "classnames";
 import { SetLabelMethodType } from "types/label";
 import styles from "./index.module.scss";
-const Handle = ({isOpen,index,setIsOperingType,operLabel}:{isOpen:boolean,index:number,setIsOperingType:()=>void,operLabel:SetLabelMethodType}) => {
+const Handle = ({isOpen,index,type,setIsOperingType,operLabel}:{isOpen:boolean,index:number,type:string,setIsOperingType:()=>void,operLabel:SetLabelMethodType}) => {
   return (
     <div className={classNames(styles.oper, isOpen ? styles["is-open"] : "")}>
       <div className={styles.detail}>
@@ -18,7 +18,9 @@ const Handle = ({isOpen,index,setIsOperingType,operLabel}:{isOpen:boolean,index:
           <EditOutlined />
           </span>
         </div>
-        <div className={styles.icon}>
+        <div className={styles.icon} onClick={()=>{
+          operLabel(type,'deleteLabel')
+        }}>
           <span>
           <MinusOutlined  />
           </span>
