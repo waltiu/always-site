@@ -1,6 +1,4 @@
 import {
-  CloseOutlined,
-  MoreOutlined,
   AppstoreAddOutlined,
   DeleteRowOutlined,
   InsertRowBelowOutlined,
@@ -8,17 +6,20 @@ import {
 import classNames from "classnames";
 import { SetLabelMethodType } from "types/label";
 import styles from "./index.module.scss";
+import { Dispatch,SetStateAction } from "react";
 const Handle = ({
   isOpen,
   index,
   title,
   setIsOperingId,
+  setTagModalVisibleId,
   operLabel,
 }: {
   isOpen: boolean;
   index: number;
   title: string;
   setIsOperingId: () => void;
+  setTagModalVisibleId:Dispatch<SetStateAction<boolean|string>>,
   operLabel: SetLabelMethodType;
 }) => {
   return (
@@ -34,7 +35,9 @@ const Handle = ({
             <InsertRowBelowOutlined />
           </span>
         </div>
-        <div className={styles.icon}>
+        <div className={styles.icon} onClick={()=>{
+          setTagModalVisibleId(true)
+        }}>
           <span>
             <AppstoreAddOutlined />
           </span>
@@ -61,6 +64,7 @@ const Handle = ({
         <span></span>
         <span></span>
       </div>
+    
     </div>
   );
 };

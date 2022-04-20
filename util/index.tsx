@@ -1,4 +1,6 @@
 import { LabelType } from "types/label";
+import  Cheerio  from "cheerio";
+import request from 'request'
 
 export const queryBaidunewsHotList = async () => {
   const result = await fetch("http://api.5cv.top/getnewsHotList");
@@ -33,3 +35,5 @@ export const uniqueKey=(arr:any[],key:string)=> {
   })
   return Array.from(map.values())
 }
+
+

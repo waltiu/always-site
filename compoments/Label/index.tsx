@@ -10,6 +10,8 @@ import CardStyle from "styles/card.module.scss";
 import hotImg from "static/images/hot.svg";
 import classNames from "classnames";
 import Handle from "./Handle";
+import TagModal from "./TagModal";
+
 import { ReactSortable } from "react-sortablejs";
 
 let sortQueue: SortQueueType = []; // 跨label拖拽进行，将多个list统一更新
@@ -19,6 +21,8 @@ const filterDragItem = ".is-hot"; // 最热特殊标记，并禁止操作
 const Label = () => {
   const [labels, operLabel] = useLabel();
   const [isOperingId, setIsOperingId] = useState<null | string>(null);
+  const [tagModalVisibleId, setTagModalVisibleId] = useState<boolean|string>(false);
+
   return (
     <div>
       {labels?.length && (
@@ -69,6 +73,9 @@ const Label = () => {
                         index={index}
                         title={title}
                         isOpen={isOperingId == id}
+                        setTagModalVisibleId={()=>{
+                          setTagModalVisibleId(id)
+                        }}
                         setIsOperingId={() => {
                           setIsOperingId(id === isOperingId ? null : id);
                         }}
@@ -116,6 +123,16 @@ const Label = () => {
             );
           })}
         </ReactSortable>
+      )}
+      {tagModalVisibleId && (
+        <TagModal
+          labels={labels}
+          visible={Boolean(tagModalVisibleId)}
+          tagModalVisibleId={tagModalVisibleId}
+          onCancel={() => {
+            setTagModalVisibleId(false);
+          }}
+        />
       )}
     </div>
   );

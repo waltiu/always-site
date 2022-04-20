@@ -1,0 +1,37 @@
+
+    .name{
+        display: flex;
+        margin-bottom: 16px;
+        .icon{
+            width: 40px !important;
+            height: 40px;
+            border: 1px solid #dcdfe6;
+            cursor: pointer;
+            margin-right: 8px;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            &:hover{
+            border: 1px solid #0084ff;
+
+            }
+        }
+    }
+    .input{
+        height: 40px;
+    }
+    .oper{
+        margin-top: 16px;
+        width: 100%;
+        display: flex;
+        button{
+            flex: 1;
+        
+        }
+    }
+    .select{
+        margin-top: 16px;
+        width: 100%;
+    }
