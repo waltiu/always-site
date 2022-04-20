@@ -14,9 +14,11 @@ import { ReactSortable } from "react-sortablejs";
 
 let sortQueue: SortQueueType = []; // 跨label拖拽进行，将多个list统一更新
 
+const filterDragItem='.is-hot' // 最热特殊标记，并禁止操作
+
 const Label = () => {
   const [labels, operLabel] = useLabel();
-  const [isOperingType, setIsOperingType] = useState<null | string>(null);
+  const [isOperingId, setIsOperingId] = useState<null | string>(null);
   return (
     <div>
       {labels?.length && (
@@ -30,25 +32,25 @@ const Label = () => {
           handle=".oper"
           setList={(data) => {
             // 热门禁止拖拽
-            if (data[0].type === HOT_LABEL) {
+            if (data[0].title === HOT_LABEL) {
               operLabel(data);
             }
           }}
-          filter=".is-hot"
+          filter={filterDragItem}
         >
           {(labels || []).map((label: LabelType, index: number) => {
-            const { type = OTHER_LABEL, tags } = label;
+            const { title = OTHER_LABEL, tags,id } = label;
             return (
               <div
-                key={type}
+                key={id}
                 className={classNames(
                   styles["label-box"],
                   CardStyle.card,
-                  type === HOT_LABEL ? "is-hot" : "",
-                  styles[type === HOT_LABEL ? "is-hot" : ""]
+                  title === HOT_LABEL ? filterDragItem : "",
+                  styles[title === HOT_LABEL ?filterDragItem : ""]
                 )}
               >
-                {type === HOT_LABEL ? (
+                {title === HOT_LABEL ? (
                   <>
                     <div className={styles.hot}>
                       <Image src={hotImg} alt="" />
@@ -65,12 +67,11 @@ const Label = () => {
                     <div className={classNames(styles.oper, "oper")}>
                       <Handle
                         index={index}
-                        type={type}
-                        isOpen={isOperingType == type}
-                        setIsOperingType={() => {
-                          console.log(type, "type");
-                          setIsOperingType(
-                            type === isOperingType ? null : type
+                        title={title}
+                        isOpen={isOperingId == id}
+                        setIsOperingId={() => {
+                          setIsOperingId(
+                            id === isOperingId ? null : id
                           );
                         }}
                         operLabel={operLabel}
@@ -107,8 +108,8 @@ const Label = () => {
                     }}
                   >
                     {(tags || []).map((item: TagType, index: number) => (
-                      <div key={`${item.name}-${index}`}>
-                        <Tag key={item.name} data={item} />
+                      <div key={`${item.id}-${index}`}>
+                        <Tag data={item} />
                       </div>
                     ))}
                   </ReactSortable>

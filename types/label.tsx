@@ -7,7 +7,7 @@ export type TagType={
 export type operType='add'|'delete'|'heat'|'sortTag'|'addLabel'|'deleteLabel'
 
 export  type LabelType={
-  type:string,
+  title:string,
   id:string,
   tags:TagType[]
 }

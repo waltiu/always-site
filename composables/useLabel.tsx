@@ -30,15 +30,15 @@ const useLabel = (): useLabelRetrunType => {
   const addLabel = (index:number) => {
       const newLabels=[...labels]
       newLabels.splice(index+1,0,{
-        type:'新增',
+        title:'新增',
         id:`label-${uuid()}`,
         tags:[]
       })
       updateLabels(newLabels)
   };
 
-  const deleteLabel=(type:string)=>{
-    const labelIndex=labels.findIndex(item=>item.type===type) 
+  const deleteLabel=(title:string)=>{
+    const labelIndex=labels.findIndex(item=>item.title===title) 
     const newLabels=[...labels]
     if(labelIndex>0){
       newLabels.splice(labelIndex,1)
@@ -96,6 +96,7 @@ const useLabel = (): useLabelRetrunType => {
     labels,
     (data, oper) => {
       if(oper&&operMethodObject[oper as keyof typeof operMethodObject]){
+        // @ts-ignore
         operMethodObject[oper  as keyof typeof operMethodObject](data)
       }else{
         updateLabels(data)

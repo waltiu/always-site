@@ -13,16 +13,16 @@ const LabelTitle = ({
   operLabel: SetLabelMethodType;
 }) => {
 
-  const { type } = label;
+  const { id,title } = label;
 
   const [isInput, setIsInput] = useState(false);
   const inputRef = useRef<InputRef>(null);
 
   const changeLabelName = (name: string) => {
-    const currentLabelIndex = labels.findIndex((item) => item.type === type);
+    const currentLabelIndex = labels.findIndex((item) => item.id === id);
     if (currentLabelIndex > 0) {
       const newLabels = [...labels];
-      newLabels[currentLabelIndex].type = name;
+      newLabels[currentLabelIndex].title = name;
       operLabel(newLabels);
       setIsInput(false);
     }
@@ -35,7 +35,7 @@ const LabelTitle = ({
           <Input
             bordered={false}
             ref={inputRef}
-            defaultValue={type}
+            defaultValue={title}
             onBlur={(e: FocusEvent<HTMLInputElement, Element>) => {
               changeLabelName(e.target.value);
             }}
@@ -52,7 +52,7 @@ const LabelTitle = ({
               }, 0);
             }}
           >
-            {type || OTHER_LABEL}
+            {title || OTHER_LABEL}
           </span>
         )}
       </div>

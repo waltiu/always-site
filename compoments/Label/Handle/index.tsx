@@ -1,8 +1,8 @@
-import { CloseOutlined, MoreOutlined,PlusOutlined,DeleteRowOutlined,InsertRowBelowOutlined } from "@ant-design/icons";
+import { CloseOutlined, MoreOutlined,AppstoreAddOutlined,DeleteRowOutlined,InsertRowBelowOutlined } from "@ant-design/icons";
 import classNames from "classnames";
 import { SetLabelMethodType } from "types/label";
 import styles from "./index.module.scss";
-const Handle = ({isOpen,index,type,setIsOperingType,operLabel}:{isOpen:boolean,index:number,type:string,setIsOperingType:()=>void,operLabel:SetLabelMethodType}) => {
+const Handle = ({isOpen,index,title,setIsOperingId,operLabel}:{isOpen:boolean,index:number,title:string,setIsOperingId:()=>void,operLabel:SetLabelMethodType}) => {
   return (
     <div className={classNames(styles.oper, isOpen ? styles["is-open"] : "")}>
       <div className={styles.detail}>
@@ -10,27 +10,27 @@ const Handle = ({isOpen,index,type,setIsOperingType,operLabel}:{isOpen:boolean,i
           operLabel(index,'addLabel')
         }}>
           <span>
-          <InsertRowBelowOutlined />
+            <InsertRowBelowOutlined />
           </span>
         </div>
         <div className={styles.icon} >
           <span>
-          <PlusOutlined />
+            <AppstoreAddOutlined />
           </span>
         </div>
       
         <div className={styles.icon} onClick={()=>{
-          operLabel(type,'deleteLabel')
+          operLabel(title,'deleteLabel')
         }}>
           <span>
-          <DeleteRowOutlined />
+            <DeleteRowOutlined />
           </span>
         </div>
       </div>
       <div
         className={styles["oper-icon"]}
         onClick={() => {
-          setIsOperingType();
+          setIsOperingId();
         }}
       >
         <span>{isOpen ? <CloseOutlined /> : <MoreOutlined />}</span>
