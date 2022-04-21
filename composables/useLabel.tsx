@@ -18,9 +18,7 @@ const useLabel = (): useLabelRetrunType => {
     localStorage.setItem(CACHE_LABELS_KEY, JSON.stringify(newLabels));
   };
 
-  const addTag = (params: TagType) => {
-    console.log(params,'params')
-  };
+
   const deleteTag = (tag: TagType) => {};
 
   const changeTag = (tag: TagType) => {};
@@ -50,14 +48,17 @@ const useLabel = (): useLabelRetrunType => {
   }
 
   const sortTag = (params: SortQueueType) => {
-    if (params[0].index === 0) {
-      params = [params[0]];
+    if(params.length>0){
+      if (params[0].index === 0) {
+        params = [params[0]];
+      }
+      const newLabels = [...labels];
+      params.map((item) => {
+        newLabels[item.index].tags = item.data;
+      });
+      updateLabels(newLabels);
     }
-    const newLabels = [...labels];
-    params.map((item) => {
-      newLabels[item.index].tags = item.data;
-    });
-    updateLabels(newLabels);
+ 
   };
 
   const initTags = () => {
@@ -86,7 +87,6 @@ const useLabel = (): useLabelRetrunType => {
   });
 
    const operMethodObject={
-    addTag:addTag,
     deleteTag:deleteTag,
     heatTag:heatTag,
     sortTag:sortTag,
