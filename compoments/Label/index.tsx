@@ -94,6 +94,7 @@ const Label = () => {
                     onEnd={() => {
                       operLabel(sortQueue, "sortTag");
                     }}
+                    dragClass="is-checked"
                     onStart={() => {
                       sortQueue = [];
                     }}

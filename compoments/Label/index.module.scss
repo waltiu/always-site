@@ -1,49 +1,59 @@
-.label-box{
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 24px;
-    flex-direction: column;
-    position: relative;
-    padding: 0px !important;
-    &:hover{
-        .label-drag{
-            visibility: visible;
-        }
+.label-box {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+  flex-direction: column;
+  position: relative;
+  padding: 0px !important;
+  &:hover {
+    .label-drag {
+      visibility: visible;
     }
-    .hot{
-        position: absolute;
-        left: 0px;
-        right: 0px;
-        width: 42px;
-        height: 42px;
-    }
+  }
+  .hot {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    width: 42px;
+    height: 42px;
+  }
 
-    .label-drag{
-        position: absolute;
-        right:16px;
-        width: 20px;
-        height: 20px;
-        cursor: pointer;
-        top: 16px;
-        visibility: hidden;
-      
+  .label-drag {
+    position: absolute;
+    right: 16px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    top: 16px;
+    visibility: hidden;
+  }
+  .tags {
+    padding: 12px 48px;
+    min-height: 80px;
+    > div {
+      display: flex;
+      flex-wrap: wrap;
     }
-    .tags{
-        padding: 12px 48px;
-        min-height: 80px;
-       >div{
-        display: flex;
-        flex-wrap: wrap;
-       }
+    :global {
+      // 在css module中修改第三方库的样式
+      .is-checked {
+        box-shadow: 0 2px 10px #ddd;
+        border-radius: 10px;
+        color: #1890ff;
+        height: 24px;
+        padding: 0px;
+        background-color: antiquewhite;
+      }
     }
-    .oper{
-        position: absolute;
-        right: 16px;
-        top: 8px;
+  }
+  .oper {
+    position: absolute;
+    right: 16px;
+    top: 8px;
+  }
+  &:not(.is-hot):hover {
+    .oper {
+      display: block;
     }
-    &:not(.is-hot):hover{
-        .oper{
-            display: block;
-        }
-    }
+  }
 }
