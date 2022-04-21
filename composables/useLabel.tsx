@@ -7,6 +7,7 @@ import {
   useLabelRetrunType,
   SortQueueType,
 } from "types/label";
+import { message } from "antd";
 
 const CACHE_LABELS_KEY = "cache-labels";
 
@@ -18,7 +19,6 @@ const useLabel = (): useLabelRetrunType => {
     localStorage.setItem(CACHE_LABELS_KEY, JSON.stringify(newLabels));
   };
 
-
   const deleteTag = (tag: TagType) => {};
 
   const changeTag = (tag: TagType) => {};
@@ -27,28 +27,32 @@ const useLabel = (): useLabelRetrunType => {
 
   const unHeatTag = (tag: TagType) => {};
 
-  const addLabel = (index:number) => {
-      const newLabels=[...labels]
-      newLabels.splice(index+1,0,{
-        title:'新增',
-        id:`label-${uuid()}`,
-        tags:[]
-      })
-      updateLabels(newLabels)
+  const addLabel = (index: number) => {
+    const newLabels = [...labels];
+    newLabels.splice(index + 1, 0, {
+      title: "新增",
+      id: `label-${uuid()}`,
+      tags: [],
+    });
+    updateLabels(newLabels);
   };
 
-  const deleteLabel=(title:string)=>{
-    const labelIndex=labels.findIndex(item=>item.title===title) 
-    const newLabels=[...labels]
-    if(labelIndex>0){
-      newLabels.splice(labelIndex,1)
+  const deleteLabel = (title: string) => {
+    if(labels.length>2){
+      const labelIndex = labels.findIndex((item) => item.title === title);
+      const newLabels = [...labels];
+      if (labelIndex > 0) {
+        newLabels.splice(labelIndex, 1);
+      }
+      updateLabels(newLabels);
+    }else{
+      message.warn('请至少保留一个卡片！')
     }
-    updateLabels(newLabels)
 
-  }
+  };
 
   const sortTag = (params: SortQueueType) => {
-    if(params.length>0){
+    if (params.length > 0) {
       if (params[0].index === 0) {
         params = [params[0]];
       }
@@ -58,7 +62,6 @@ const useLabel = (): useLabelRetrunType => {
       });
       updateLabels(newLabels);
     }
- 
   };
 
   const initTags = () => {
@@ -86,22 +89,22 @@ const useLabel = (): useLabelRetrunType => {
     initTags();
   });
 
-   const operMethodObject={
-    deleteTag:deleteTag,
-    heatTag:heatTag,
-    sortTag:sortTag,
-    addLabel:addLabel,
-    deleteLabel:deleteLabel
-  }
+  const operMethodObject = {
+    deleteTag: deleteTag,
+    heatTag: heatTag,
+    sortTag: sortTag,
+    addLabel: addLabel,
+    deleteLabel: deleteLabel,
+  };
 
   return [
     labels,
     (data, oper) => {
-      if(oper&&operMethodObject[oper as keyof typeof operMethodObject]){
+      if (oper && operMethodObject[oper as keyof typeof operMethodObject]) {
         // @ts-ignore
-        operMethodObject[oper  as keyof typeof operMethodObject](data)
-      }else{
-        updateLabels(data)
+        operMethodObject[oper as keyof typeof operMethodObject](data);
+      } else {
+        updateLabels(data);
       }
     },
   ];

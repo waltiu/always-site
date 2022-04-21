@@ -26,7 +26,6 @@ const Handle = ({
 }) => {
   const [tagModalVisible, setTagModalVisible] = useState<boolean>(false);
   const {title}=currentLabel
-  console.log(tagModalVisible)
   return (
     <div className={classNames(styles.oper, isOpen ? styles["is-open"] : "")}>
       <div className={styles.detail}>
