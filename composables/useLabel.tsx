@@ -18,7 +18,9 @@ const useLabel = (): useLabelRetrunType => {
     localStorage.setItem(CACHE_LABELS_KEY, JSON.stringify(newLabels));
   };
 
-  const addTag = (tag: TagType) => {};
+  const addTag = (params: TagType) => {
+    console.log(params,'params')
+  };
   const deleteTag = (tag: TagType) => {};
 
   const changeTag = (tag: TagType) => {};

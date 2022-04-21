@@ -1,3 +1,4 @@
+import { uuid } from "util"
 
 export const HOT_LABEL='最热'
 export const OTHER_LABEL='其他'
@@ -31,6 +32,41 @@ export const newsHotList=[{
     }).slice(0,HOT_SHOW_MAX)
 
   }
+}]
+
+
+const searchList=[{
+    icon: "https://img.bidianer.com/engine/201905/06/5ccffcbb848d1_6VmFZFyC397EDMO.svg",
+    name: "百度",
+    url: "https://www.baidu.com/s?tn=78000241_19_hao_pg&ie=utf-8&wd=",
+},  {
+    icon: "https://img.bidianer.com/engine/201904/14/5cb34424d14e6HcH59ZkZZEe8ND-7.svg",
+    name: '网易云音乐',
+    url: "https://music.163.com/#/search/m/?s=",
+}, {
+
+    icon: "https://img.bidianer.com/engine/201904/15/5cb4182d9c42cEu-yEtxPyEbjiNq7.svg",
+    name: "百度图片",
+    url: "https://image.baidu.com/search/index?tn=baiduimage&word=",
+}, {
+
+    icon: "https://img.bidianer.com/engine/201904/16/5cb544c26d015jJ5gQ9ojDZAP1qW4.svg",
+    name: '百度地图',
+    url: "http://map.baidu.com/m?word=",
+},{
+
+    icon: "https://img.bidianer.com/engine/202102/19/602fd5b78adfe2K5aUWS_vedEJ3ns.svg",
+    name: '知乎',
+    url: "https://www.zhihu.com/search?q=",
+}, {
+    icon: "https://img.bidianer.com/engine/201904/14/5cb34d1303b1blA85SUXF98Q7LZI9.svg",
+    name: 'B站',
+    url: "https://search.bilibili.com/all?keyword=",
+},   {
+
+    icon: "https://img.bidianer.com/engine/201904/14/5cb3407b5e7998B5paS4A0LCkOQm-.svg",
+    name: '贴吧',
+    url: "http://tieba.baidu.com/f?ie=utf-8&kw=",
 }]
 
 

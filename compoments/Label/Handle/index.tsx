@@ -4,24 +4,29 @@ import {
   InsertRowBelowOutlined,
 } from "@ant-design/icons";
 import classNames from "classnames";
-import { SetLabelMethodType } from "types/label";
+import TagModal from "../Common/TagModal";
+import { LabelType, SetLabelMethodType } from "types/label";
+import { useState } from "react";
 import styles from "./index.module.scss";
-import { Dispatch,SetStateAction } from "react";
+
 const Handle = ({
   isOpen,
   index,
-  title,
+  currentLabel,
+  labels,
   setIsOperingId,
-  setTagModalVisibleId,
   operLabel,
 }: {
   isOpen: boolean;
   index: number;
-  title: string;
+  labels:LabelType[],
+  currentLabel:LabelType,
   setIsOperingId: () => void;
-  setTagModalVisibleId:Dispatch<SetStateAction<boolean|string>>,
   operLabel: SetLabelMethodType;
 }) => {
+  const [tagModalVisible, setTagModalVisible] = useState<boolean>(false);
+  const {title}=currentLabel
+  console.log(tagModalVisible)
   return (
     <div className={classNames(styles.oper, isOpen ? styles["is-open"] : "")}>
       <div className={styles.detail}>
@@ -36,7 +41,7 @@ const Handle = ({
           </span>
         </div>
         <div className={styles.icon} onClick={()=>{
-          setTagModalVisibleId(true)
+          setTagModalVisible(true)
         }}>
           <span>
             <AppstoreAddOutlined />
@@ -64,7 +69,17 @@ const Handle = ({
         <span></span>
         <span></span>
       </div>
-    
+      {tagModalVisible && (
+        <TagModal
+          currentLabel={currentLabel}
+          labels={labels}
+          visible={Boolean(tagModalVisible)}
+          operLabel={operLabel}
+          onCancel={() => {
+            setTagModalVisible(false);
+          }}
+        />
+      )}
     </div>
   );
 };

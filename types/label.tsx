@@ -2,14 +2,16 @@ export type TagType={
     name: string,
     link: string,
     icon:string,
-    id:string
+    id:string,
+    index?:number
 }
-export type operType='add'|'delete'|'heat'|'sortTag'|'addLabel'|'deleteLabel'
+export type operType='addTag'|'delete'|'heat'|'sortTag'|'addLabel'|'deleteLabel'
 
 export  type LabelType={
   title:string,
   id:string,
-  tags:TagType[]
+  tags:TagType[],
+  index?:number
 }
 export type SortQueueType={
  index:number,

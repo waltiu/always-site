@@ -10,7 +10,7 @@ import CardStyle from "styles/card.module.scss";
 import hotImg from "static/images/hot.svg";
 import classNames from "classnames";
 import Handle from "./Handle";
-import TagModal from "./TagModal";
+import TagModal from "./Common/TagModal";
 
 import { ReactSortable } from "react-sortablejs";
 
@@ -21,7 +21,6 @@ const filterDragItem = ".is-hot"; // 最热特殊标记，并禁止操作
 const Label = () => {
   const [labels, operLabel] = useLabel();
   const [isOperingId, setIsOperingId] = useState<null | string>(null);
-  const [tagModalVisibleId, setTagModalVisibleId] = useState<boolean|string>(false);
 
   return (
     <div>
@@ -44,6 +43,7 @@ const Label = () => {
         >
           {(labels || []).map((label: LabelType, index: number) => {
             const { title = OTHER_LABEL, tags, id } = label;
+            const currentLabel={...label,index}
             return (
               <div
                 key={id}
@@ -70,12 +70,10 @@ const Label = () => {
 
                     <div className={classNames(styles.oper, "oper")}>
                       <Handle
+                        currentLabel={currentLabel}
+                        labels={labels}
                         index={index}
-                        title={title}
                         isOpen={isOperingId == id}
-                        setTagModalVisibleId={()=>{
-                          setTagModalVisibleId(id)
-                        }}
                         setIsOperingId={() => {
                           setIsOperingId(id === isOperingId ? null : id);
                         }}
@@ -124,16 +122,7 @@ const Label = () => {
           })}
         </ReactSortable>
       )}
-      {tagModalVisibleId && (
-        <TagModal
-          labels={labels}
-          visible={Boolean(tagModalVisibleId)}
-          tagModalVisibleId={tagModalVisibleId}
-          onCancel={() => {
-            setTagModalVisibleId(false);
-          }}
-        />
-      )}
+  
     </div>
   );
 };

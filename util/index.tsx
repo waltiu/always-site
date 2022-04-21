@@ -1,6 +1,5 @@
-import { LabelType } from "types/label";
-import  Cheerio  from "cheerio";
-import request from 'request'
+import { LabelType,TagType } from "types/label";
+const urlReg=/^((https|http)?:\/\/)[^\s]+/;
 
 export const queryBaidunewsHotList = async () => {
   const result = await fetch("http://api.5cv.top/getnewsHotList");
@@ -19,7 +18,7 @@ export const uniqueTags=(data:Array<LabelType>)=>{
     return data.map((item:LabelType)=>{
       return {
         ...item,
-        tags:uniqueKey(item.tags,'name')
+        tags:uniqueKey(item.tags,'id')
       }
     })
 }
@@ -37,3 +36,6 @@ export const uniqueKey=(arr:any[],key:string)=> {
 }
 
 
+export const validateIsSite =(tag:TagType)=>{
+  return urlReg.test(tag.link)&&tag.name
+}

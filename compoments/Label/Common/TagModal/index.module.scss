@@ -1,0 +1,54 @@
+
+    .tag-modal{
+        :global { // 在css module中修改第三方库的样式
+            .ant-modal-content{
+                border-radius: 10px;
+                .ant-modal-header{
+                    border-top-right-radius: 10px;
+                    border-top-left-radius: 10px;
+                }
+            }
+        }
+        .name{
+            display: flex;
+            margin-bottom: 16px;
+            .icon{
+                width: 40px !important;
+                height: 40px;
+                border: 1px solid #dcdfe6;
+                cursor: pointer;
+                margin-right: 8px;
+                flex-shrink: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 10px;
+                &:hover{
+                border: 1px solid #0084ff;
+    
+                }
+            }
+        }
+        .input{
+            height: 40px;
+        }
+        .oper{
+            margin-top: 16px;
+            width: 100%;
+            display: flex;
+            button{
+                flex: 1;
+                margin-right: 16px;
+                &:nth-child(2){
+                    width: 150px;
+                    flex-basis: auto;
+                    flex-grow: 0;
+                }
+            }
+        }
+        .select{
+            margin-top: 16px;
+            width: 100%;
+        }
+    
+    }
