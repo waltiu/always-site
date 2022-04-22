@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { Tabs, Spin } from "antd";
 import axios from "axios";
-import { HotMessageType } from "types/intro";
+import type { HotMessageType } from "types/intro";
 import { SyncOutlined } from "@ant-design/icons";
 import { newsHotList } from "static/constant";
 import { useEffect, useRef, useState } from "react";
@@ -9,12 +9,10 @@ import Image from "compoments/Image";
 import styles from "./index.module.scss";
 import cardStyles from "styles/card.module.scss";
 
-type HotDataType = {
-  [name: string]: [HotMessageType];
-};
+type HotDataType = Record<string, [HotMessageType]>;
 const { TabPane } = Tabs;
 
-let timer:any=''
+let timer: any=''
 
 const Hot = () => {
   const [currentKey, setCurrentKey] = useState(newsHotList[0].name);
@@ -114,7 +112,7 @@ const Hot = () => {
                         );
                       })
                     ) : (
-                      <div></div>
+                      <div />
                     )}
                   </div>
                 </Spin>

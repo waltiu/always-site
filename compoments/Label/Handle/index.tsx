@@ -5,7 +5,7 @@ import {
 } from "@ant-design/icons";
 import classNames from "classnames";
 import TagModal from "../Common/TagModal";
-import { LabelType, SetLabelMethodType } from "types/label";
+import type { LabelType, SetLabelMethodType } from "types/label";
 import { useState } from "react";
 import styles from "./index.module.scss";
 
@@ -19,8 +19,8 @@ const Handle = ({
 }: {
   isOpen: boolean;
   index: number;
-  labels:LabelType[],
-  currentLabel:LabelType,
+  labels: LabelType[],
+  currentLabel: LabelType,
   setIsOperingId: () => void;
   operLabel: SetLabelMethodType;
 }) => {
@@ -64,9 +64,9 @@ const Handle = ({
           setIsOperingId();
         }}
       >
-        <span></span>
-        <span></span>
-        <span></span>
+        <span />
+        <span />
+        <span />
       </div>
       {tagModalVisible && (
         <TagModal

@@ -1,7 +1,8 @@
 import { Modal, Input, Button, message } from "antd";
-import { FC, useState } from "react";
+import type { FC} from "react";
+import { useState } from "react";
 import { uuid,validateIsSite } from "util/index";
-import { TagType, LabelType, SetLabelMethodType } from "types/label";
+import type { TagType, LabelType, SetLabelMethodType } from "types/label";
 import Image from "compoments/Image";
 import { UploadOutlined } from "@ant-design/icons";
 import styles from "./index.module.scss";
@@ -44,7 +45,7 @@ const TagModal: FC<TagModalProps> = ({
     setNewSite(site);
   };
 
-  const addTag=(continuer:boolean)=>{
+  const addTag=(continuer: boolean)=>{
     if(validateIsSite(site)){
       const newLabels=[...labels]
       newLabels[labelIndex as number ].tags.push(site)

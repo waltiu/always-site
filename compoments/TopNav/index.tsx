@@ -1,11 +1,11 @@
 import { Input } from "antd";
 import jsonp from "jsonp";
 import styles from "./index.module.scss";
-import { BaiduSugListType, BaiduSugItemType } from "types/baidu";
+import type { BaiduSugListType, BaiduSugItemType } from "types/baidu";
 import { useState } from "react";
 import classNames from "classnames";
 const TopNav = () => {
-  const [sugList, setSugList] = useState<Array<string>>();
+  const [sugList, setSugList] = useState<string[]>();
   const querySearch = async (e: any) => {
     await jsonp(
       `https://www.baidu.com/sugrec?prod=pc&wd=${e.target.value}`,

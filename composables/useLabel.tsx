@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { defaultTag } from "static/constant";
 import { uuid, uniqueTags } from "util/index";
-import {
+import type {
   TagType,
   LabelType,
   useLabelRetrunType,
@@ -12,9 +12,9 @@ import { message } from "antd";
 const CACHE_LABELS_KEY = "cache-labels";
 
 const useLabel = (): useLabelRetrunType => {
-  const [labels, setLables] = useState<Array<LabelType>>([]);
+  const [labels, setLables] = useState<LabelType[]>([]);
 
-  const updateLabels = (newLabels: Array<LabelType>) => {
+  const updateLabels = (newLabels: LabelType[]) => {
     setLables(uniqueTags(newLabels));
     localStorage.setItem(CACHE_LABELS_KEY, JSON.stringify(newLabels));
   };

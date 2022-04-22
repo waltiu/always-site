@@ -4,12 +4,12 @@ import cardStyles from 'styles/card.module.scss'
 import styles from './index.module.scss'
 const Clock =()=>{
     useEffect(()=>{
-        var canvas = document.querySelector('canvas');
-        var ctx = canvas!.getContext('2d') as any;
-        var nowDate = new Date();
-        var second = nowDate.getSeconds();
-        var minute = nowDate.getMinutes();
-        var hour = nowDate.getHours();
+        const canvas = document.querySelector('canvas');
+        const ctx = canvas!.getContext('2d') as any;
+        let nowDate = new Date();
+        let second = nowDate.getSeconds();
+        let minute = nowDate.getMinutes();
+        let hour = nowDate.getHours();
         draw()
         
         function draw() {

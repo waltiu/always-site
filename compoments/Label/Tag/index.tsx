@@ -1,4 +1,5 @@
-import { FC, useState } from "react";
+import type { FC} from "react";
+import { useState } from "react";
 import { Popover } from "antd";
 import styles from "./index.module.scss";
 import Image from "compoments/Image";

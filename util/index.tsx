@@ -1,4 +1,4 @@
-import { LabelType,TagType } from "types/label";
+import type { LabelType,TagType } from "types/label";
 const urlReg=/^((https|http)?:\/\/)[^\s]+/;
 
 export const queryBaidunewsHotList = async () => {
@@ -7,15 +7,15 @@ export const queryBaidunewsHotList = async () => {
 };
 export const uuid = () => {
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
-    var r = (Math.random() * 16) | 0,
+    const r = (Math.random() * 16) | 0,
       v = c == "x" ? r : (r & 0x3) | 0x8;
     return v.toString(16);
   });
 };
 
-export const uniqueTags=(data:Array<LabelType>)=>{
+export const uniqueTags=(data: LabelType[])=>{
   
-    return data.map((item:LabelType)=>{
+    return data.map((item: LabelType)=>{
       return {
         ...item,
         tags:uniqueKey(item.tags,'id')
@@ -25,8 +25,8 @@ export const uniqueTags=(data:Array<LabelType>)=>{
 
 
 
-export const uniqueKey=(arr:any[],key:string)=> {
-  let map = new Map()
+export const uniqueKey=(arr: any[],key: string)=> {
+  const map = new Map()
   arr.forEach((item)=>{
     if (!map.has(item[key])){
       map.set(item[key],item)
@@ -36,6 +36,6 @@ export const uniqueKey=(arr:any[],key:string)=> {
 }
 
 
-export const validateIsSite =(tag:TagType)=>{
+export const validateIsSite =(tag: TagType)=>{
   return urlReg.test(tag.link)&&tag.name
 }

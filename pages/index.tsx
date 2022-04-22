@@ -9,7 +9,7 @@ import styles from './index.module.scss'
 
 
 const Home: NextPage = (props) => {
-
+  const a=1
   return (
     <div >
       <Head>

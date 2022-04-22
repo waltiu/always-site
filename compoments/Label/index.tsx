@@ -2,7 +2,7 @@ import useLabel from "composables/useLabel";
 import { useState } from "react";
 import Tag from "./Tag";
 import { HOT_LABEL, OTHER_LABEL } from "static/constant";
-import { TagType, LabelType, SortQueueType } from "types/label";
+import type { TagType, LabelType, SortQueueType } from "types/label";
 import LabelTitle from "./Title";
 import Image from "../Image";
 import styles from "./index.module.scss";
