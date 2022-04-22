@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useState } from "react";
 import { defaultTag } from "static/constant";
 import { uuid, uniqueTags } from "util/index";
@@ -54,6 +56,7 @@ const useLabel = (): useLabelRetrunType => {
   const sortTag = (params: SortQueueType) => {
     if (params.length > 0) {
       if (params[0].index === 0) {
+        // eslint-disable-next-line no-param-reassign
         params = [params[0]];
       }
       const newLabels = [...labels];

@@ -8,8 +8,7 @@ import styles from './index.module.scss'
 
 
 
-const Home: NextPage = (props) => {
-  const a=1
+const Home: NextPage = () => {
   return (
     <div >
       <Head>
@@ -31,7 +30,7 @@ const Home: NextPage = (props) => {
   )
 }
 // page目录下的组件，才会调用这个方法
-Home.getInitialProps = async ctx => {
+Home.getInitialProps = async () => {
   return {
   };
 }

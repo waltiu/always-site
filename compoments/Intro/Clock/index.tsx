@@ -20,7 +20,7 @@ const Clock =()=>{
             ctx.clearRect(0, 0, 800, 800);
             ctx.beginPath();
             ctx.lineCap = "round";
-            for (var i = 0; i < 60; i++) {
+            for (let i = 0; i < 60; i++) {
                 if ((i + 5) % 5 === 0) {
                     continue;
                 }
@@ -35,7 +35,7 @@ const Clock =()=>{
         
             ctx.beginPath();
             ctx.lineCap = "round";
-            for (var i = 1; i < 13; i++) {
+            for (let i = 1; i < 13; i++) {
                 ctx.moveTo(Math.cos((i * 30) / 180 * Math.PI) * 350 + 400, -Math.sin((i * 30) / 180 * Math.PI) * 350 + 400);
                 ctx.lineTo(Math.cos((i * 30) / 180 * Math.PI) * 320 + 400, -Math.sin((i * 30) / 180 * Math.PI) * 320 + 400);
                 ctx.font = "50px Arial";

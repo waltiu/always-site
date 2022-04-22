@@ -10,7 +10,6 @@ import CardStyle from "styles/card.module.scss";
 import hotImg from "static/images/hot.svg";
 import classNames from "classnames";
 import Handle from "./Handle";
-import TagModal from "./Common/TagModal";
 
 import { ReactSortable } from "react-sortablejs";
 
@@ -111,8 +110,8 @@ const Label = () => {
                       }
                     }}
                   >
-                    {(tags || []).map((item: TagType, index: number) => (
-                      <div key={`${item.id}-${index}`}>
+                    {(tags || []).map((item: TagType, idx: number) => (
+                      <div key={`${item.id}-${idx}`}>
                         <Tag data={item} />
                       </div>
                     ))}

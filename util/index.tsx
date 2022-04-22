@@ -13,6 +13,16 @@ export const uuid = () => {
   });
 };
 
+export const uniqueKey=(arr: any[],key: string)=> {
+  const map = new Map()
+  arr.forEach((item)=>{
+    if (!map.has(item[key])){
+      map.set(item[key],item)
+    }
+  })
+  return Array.from(map.values())
+}
+
 export const uniqueTags=(data: LabelType[])=>{
   
     return data.map((item: LabelType)=>{
@@ -25,15 +35,7 @@ export const uniqueTags=(data: LabelType[])=>{
 
 
 
-export const uniqueKey=(arr: any[],key: string)=> {
-  const map = new Map()
-  arr.forEach((item)=>{
-    if (!map.has(item[key])){
-      map.set(item[key],item)
-    }
-  })
-  return Array.from(map.values())
-}
+
 
 
 export const validateIsSite =(tag: TagType)=>{

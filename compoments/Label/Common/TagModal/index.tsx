@@ -38,6 +38,7 @@ const TagModal: FC<TagModalProps> = ({
     site.link = url;
     setNewSite(site);
   };
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
   const changeIcon = () => {};
 
   const changeName = (name: string) => {

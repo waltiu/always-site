@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import classNames from "classnames";
 import { useEffect, useState } from "react";
 import { APP_ID, APP_SECRET } from "static/ids/mxnzp";
@@ -12,7 +13,8 @@ type weatherType = {
   temp: string;
 };
 
-const Weather = (props: any) => {
+const Weather = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [location, setLoaction] = useState("北京");
   const [text, setText] = useState<weatherType | null>(null);
   const fetchWeather = async () => {

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 export type TagType={
     name: string,
     link: string,

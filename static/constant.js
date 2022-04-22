@@ -1,4 +1,3 @@
-import { uuid } from "util"
 
 export const HOT_LABEL='最热'
 export const OTHER_LABEL='其他'
@@ -10,7 +9,7 @@ export const newsHotList=[{
   url:"https://www.frontendjs.com/api/hot/baidu",
   icon:'https://www.baidu.com/favicon.ico',
   tranferData:(data)=>{
-    return (data?.data||[]).map((item,index)=>{
+    return (data?.data||[]).map((item)=>{
       return {
         text:item.text,
         hotValue:item.hotValue,
@@ -24,7 +23,7 @@ export const newsHotList=[{
   url:"https://tenapi.cn/zhihuresou/",
   icon:'https://static.zhihu.com/heifetz/favicon.ico',
   tranferData:(data)=>{
-   return( data?.list||[]).map((item,index)=>{
+   return( data?.list||[]).map((item)=>{
     return {
       text:item.query,
       link:item.url
@@ -35,7 +34,7 @@ export const newsHotList=[{
 }]
 
 
-const searchList=[{
+export const searchList=[{
     icon: "https://img.bidianer.com/engine/201905/06/5ccffcbb848d1_6VmFZFyC397EDMO.svg",
     name: "百度",
     url: "https://www.baidu.com/s?tn=78000241_19_hao_pg&ie=utf-8&wd=",

@@ -76,7 +76,7 @@ const Hot = () => {
           activeKey={currentKey}
         >
           {newsHotList.map((item) => {
-            const newsHotList = hotData[item.name] || [];
+            const hotList = hotData[item.name] || [];
             return (
               <TabPane
                 tab={
@@ -91,22 +91,22 @@ const Hot = () => {
               >
                 <Spin spinning={loading}>
                   <div className={styles["host-list"]}>
-                    {newsHotList.length ? (
-                      newsHotList.map((item: HotMessageType, index: number) => {
+                    {hotList.length ? (
+                      hotList.map((message: HotMessageType, index: number) => {
                         return (
-                          <div className={styles["hot-item"]} key={item.text}>
+                          <div className={styles["hot-item"]} key={message.text}>
                             <div className={styles.index}>{index + 1}</div>
                             <div className={styles.text}>
                               <a
-                                href={item.link}
+                                href={message.link}
                                 target="_blank"
                                 rel="noreferrer"
                               >
-                                {item.text}
+                                {message.text}
                               </a>
                             </div>
                             <div className={styles["hot-value"]}>
-                              {item.hotValue}
+                              {message.hotValue}
                             </div>
                           </div>
                         );
