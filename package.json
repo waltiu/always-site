@@ -6,7 +6,7 @@
     "start": "next dev",
     "build": "next build",
     "server": "next start",
-    "lint": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx  --format=pretty  ./",
+    "lint": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx  --format=pretty ",
     "generate": "next build && next export",
     "export": "next export",
     "prepare": "husky install",
