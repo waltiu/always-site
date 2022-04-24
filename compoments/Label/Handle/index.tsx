@@ -25,14 +25,13 @@ const Handle = ({
   operLabel: SetLabelMethodType;
 }) => {
   const [tagModalVisible, setTagModalVisible] = useState<boolean>(false);
-  const {title}=currentLabel
   return (
     <div className={classNames(styles.oper, isOpen ? styles["is-open"] : "")}>
       <div className={styles.detail}>
         <div
           className={styles.icon}
           onClick={() => {
-            operLabel(index, "addLabel");
+            operLabel("addLabel",'',index);
           }}
         >
           <span>
@@ -50,7 +49,7 @@ const Handle = ({
         <div
           className={styles.icon}
           onClick={() => {
-            operLabel(title, "deleteLabel");
+            operLabel("deleteLabel","",index);
           }}
         >
           <span>

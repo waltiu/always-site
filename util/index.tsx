@@ -29,7 +29,7 @@ export const uniqueTags=(data: LabelType[])=>{
     return data.map((item: LabelType)=>{
       return {
         ...item,
-        tags:uniqueKey(item.tags,'id')
+        tags:uniqueKey(item.tags,'id').filter((tag: TagType)=>tag.link||tag.isFolder)
       }
     })
 }
@@ -51,6 +51,11 @@ export const copyText = (text: string) => {
 };
 
 
-export const validateIsSite =(tag: TagType)=>{
-  return urlReg.test(tag.link)&&tag.name
+export const validateIsSite =(tag: TagType,isFolder: boolean)=>{
+  return (isFolder?true:urlReg.test(tag.link))&&tag.name
+}
+
+
+export const isChildTag=(data: TagType)=>{
+  return data.hasOwnProperty("tagChildIndex")
 }

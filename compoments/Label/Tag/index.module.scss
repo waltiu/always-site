@@ -6,16 +6,27 @@
   width: 180px;
   padding: 8px 32px 8px 8px;
   position: relative;
+  >span{
+    flex-shrink: 0;
+  }
   .name{
       margin-left: 8px;
       line-height: 24px;
-      font-weight: lighter
+      font-weight: lighter;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      width: calc(100% - 32px);
   }
   .tag-more{
     margin-left: 4px;
     color: orange;
     cursor: pointer;
     font-size: 16px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: calc(100% );
   }
   .oper{
     display: none;

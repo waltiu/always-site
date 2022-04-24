@@ -46,5 +46,5 @@ a {
   border-radius: 6px;
 }
 .ant-modal-wrap{
-  z-index: 9999;
+  z-index: 1040;
 }

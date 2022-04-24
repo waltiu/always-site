@@ -8,6 +8,7 @@ import type {
   LabelType,
   useLabelRetrunType,
   SortQueueType,
+  OperTypeFunObj
 } from "types/label";
 import { message } from "antd";
 
@@ -21,17 +22,11 @@ const useLabel = (): useLabelRetrunType => {
     localStorage.setItem(CACHE_LABELS_KEY, JSON.stringify(newLabels));
   };
 
-  const deleteTag = (tag: TagType) => {};
 
-  const changeTag = (tag: TagType) => {};
 
-  const heatTag = (tag: TagType) => {};
-
-  const unHeatTag = (tag: TagType) => {};
-
-  const addLabel = (index: number) => {
+  const addLabel = (_: any,labelIndex: number) => {
     const newLabels = [...labels];
-    newLabels.splice(index + 1, 0, {
+    newLabels.splice(labelIndex + 1, 0, {
       title: "新增",
       id: `label-${uuid()}`,
       tags: [],
@@ -39,9 +34,8 @@ const useLabel = (): useLabelRetrunType => {
     updateLabels(newLabels);
   };
 
-  const deleteLabel = (title: string) => {
+  const deleteLabel = (_: any,labelIndex: number) => {
     if(labels.length>2){
-      const labelIndex = labels.findIndex((item) => item.title === title);
       const newLabels = [...labels];
       if (labelIndex > 0) {
         newLabels.splice(labelIndex, 1);
@@ -52,6 +46,37 @@ const useLabel = (): useLabelRetrunType => {
     }
 
   };
+
+  const editLabel=(data: LabelType,labelIndex:  number)=>{
+    const newLabels = [...labels];
+    newLabels[labelIndex]={
+      ... newLabels[labelIndex],
+      ...data
+    }
+    updateLabels(newLabels)
+  }
+
+
+  const addTag =(data: TagType,labelIndex:  number)=>{
+    const newLabels = [...labels];
+    newLabels[labelIndex].tags.push({
+      ...data,
+      id:`tag-${uuid()}`,
+    })
+    updateLabels(newLabels)
+  }
+
+  const deleteTag = (data: any,labelIndex: number,tagIndex: number) => {
+    const newLabels = [...labels];
+    newLabels[labelIndex].tags.splice(tagIndex,1)
+    updateLabels(newLabels)
+  };
+
+  const editTag =(data: any,labelIndex: number,tagIndex: number)=>{
+    const newLabels = [...labels];
+    newLabels[labelIndex].tags[tagIndex]=data
+    updateLabels(newLabels)
+  }
 
   const sortTag = (params: SortQueueType) => {
     if (params.length > 0) {
@@ -67,6 +92,62 @@ const useLabel = (): useLabelRetrunType => {
     }
   };
 
+  const addChildTag=(data: any,labelIndex: number,tagIndex: number)=>{
+    const newLabels = [...labels];
+    if(!newLabels[labelIndex].tags[tagIndex].childs){
+      newLabels[labelIndex].tags[tagIndex].childs=[]
+    }
+    // @ts-ignore
+    newLabels[labelIndex].tags[tagIndex].childs.push({
+      ...data,
+      id:`child-tag-${uuid()}`
+    })
+    updateLabels(newLabels);
+  }
+
+  const editChildTag=(data: any,labelIndex: number,tagIndex: number,tagChildIndex: number)=>{
+    const newLabels = [...labels];
+    if( newLabels[labelIndex].tags[tagIndex].childs){
+      // @ts-ignore
+      newLabels[labelIndex].tags[tagIndex].childs[tagChildIndex]=data
+    }
+    updateLabels(newLabels);
+  }
+
+  const deleteChildTag=(data: any,labelIndex: number,tagIndex: number,tagChildIndex: number)=>{
+    const newLabels = [...labels];
+    if( newLabels[labelIndex].tags[tagIndex].childs){
+      // @ts-ignore
+      newLabels[labelIndex].tags[tagIndex].childs?.splice(tagChildIndex,1)
+    }
+    updateLabels(newLabels);
+  }
+
+  const changeTagToFolder=(data: any,labelIndex: number,tagIndex: number,tagChildIndex: number)=>{
+    const newLabels = [...labels];
+       // @ts-ignore
+    const tag=newLabels[labelIndex].tags[tagIndex]
+    addChildTag({
+      ...tag,
+      childs:[],
+    },labelIndex,tagIndex)
+    newLabels[labelIndex].tags[tagIndex].isFolder=true
+    newLabels[labelIndex].tags[tagIndex].name=`文件夹-${newLabels[labelIndex].tags[tagIndex].name}`
+    newLabels[labelIndex].tags[tagIndex].link=""
+    updateLabels(newLabels);
+  }
+  const changeFolderToTag=(data: any,labelIndex: number,tagIndex: number,tagChildIndex: number)=>{
+    const newLabels = [...labels];
+    // @ts-ignore
+    if(newLabels[labelIndex].tags[tagIndex].childs?.length<=1){
+      newLabels[labelIndex].tags[tagIndex].isFolder=false
+      updateLabels(newLabels);
+    }
+    // @ts-ignore
+    const tag=newLabels[labelIndex].tags[tagIndex].childs[tagChildIndex]
+    deleteChildTag(data,labelIndex,tagIndex,tagChildIndex)
+    addTag(tag,labelIndex)
+  }
   const initTags = () => {
     if (labels.length) {
       return "";
@@ -92,23 +173,30 @@ const useLabel = (): useLabelRetrunType => {
     initTags();
   });
 
-  const operMethodObject = {
-    deleteTag: deleteTag,
-    heatTag: heatTag,
-    sortTag: sortTag,
-    addLabel: addLabel,
-    deleteLabel: deleteLabel,
+  const operMethodObject: OperTypeFunObj = {
+    addLabel:addLabel,
+    deleteLabel:deleteLabel,
+    editLabel:editLabel,
+    sortLabel:updateLabels,
+    addTag:addTag,
+    deleteTag:deleteTag,
+    editTag:editTag,
+    sortTag:sortTag,
+    addChildTag:addChildTag,
+    editChildTag:editChildTag,
+    deleteChildTag:deleteChildTag,
+    changeTagToFolder:changeTagToFolder,
+    changeFolderToTag:changeFolderToTag,
   };
 
   return [
     labels,
-    (data, oper) => {
-      if (oper && operMethodObject[oper as keyof typeof operMethodObject]) {
-        // @ts-ignore
-        operMethodObject[oper as keyof typeof operMethodObject](data);
-      } else {
-        updateLabels(data);
-      }
+    (oper,data,labelIndex,tagIndex,tagChildIndex) => {
+      try {
+        operMethodObject[oper](data,labelIndex,tagIndex,tagChildIndex);     
+      } catch (error) {
+        console.log(error,'更新出错了')
+      } 
     },
   ];
 };

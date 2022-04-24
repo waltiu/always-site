@@ -5,11 +5,12 @@ export type TagType={
     icon: string,
     id: string,
     childs?: TagType[],
-    tagIndex: number,
+    tagIndex?: number,
     tagChildIndex?: number,
+    isFolder?: boolean
 }
-export type operType='addTag'|'delete'|'heat'|'sortTag'|'addLabel'|'deleteLabel'
-
+export type operType='addLabel'|'deleteLabel'|'editLabel'|'sortLabel'|'addTag'|'deleteTag'|'editTag'|'sortTag'|'addChildTag'|'editChildTag'|'deleteChildTag'|'changeTagToFolder'|'changeFolderToTag'
+export type OperTypeFunObj = Record<operType,any>;
 export  type LabelType={
   title: string,
   id: string,
@@ -26,4 +27,4 @@ export type useLabelRetrunType = [
  tags:LabelType[] ,
  method:SetLabelMethodType
 ];
-export type SetLabelMethodType= (tag: any,oper?: operType) => void
+export type SetLabelMethodType= (type: operType,data: any,labelIndex?: number,tagIndex?: number,tagChildIndex?: number) => void

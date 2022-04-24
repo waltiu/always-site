@@ -1,19 +1,21 @@
 import type { FC } from "react";
 import { useState } from "react";
-import { message, Popover, Popconfirm } from "antd";
+import { Popover, Popconfirm } from "antd";
+import folderSvg from "static/images/folder.svg";
+import folderOpenSvg from "static/images/folder-open.svg";
 import {
   LinkOutlined,
   EditOutlined,
   DeleteOutlined,
   PlusOutlined,
-  FolderOutlined,
-  FolderOpenOutlined,
+  CopyOutlined,
+  FileZipOutlined,
 } from "@ant-design/icons";
 import styles from "./index.module.scss";
 import Image from "compoments/Image";
 import defaultImg from "static/images/site.svg";
 import classNames from "classnames";
-import { copyText } from "util/index";
+import { copyText, isChildTag } from "util/index";
 import type { TagType, LabelType, SetLabelMethodType } from "types/label";
 import TagModal from "../Common/TagModal";
 import TagItem from "../Tag";
@@ -26,33 +28,49 @@ type TagPropsType = {
 
 const Tag: FC<TagPropsType> = (props) => {
   const { data, currentLabel, labels, operLabel } = props;
+  const {
+    tagIndex,
+    tagChildIndex,
+    link,
+    icon,
+    name,
+    childs = [],
+    isFolder,
+  } = data;
   const [isChecked, setIscChecked] = useState(false);
   const [tagModalVisible, setTagModalVisible] = useState(false);
   const [isAddChild, setIsAddChild] = useState(false);
   const [childTagVisible, setChildTagVisible] = useState(false);
   const { index: labelIndex } = currentLabel;
   const deleteTag = () => {
-    const newLabels = [...labels];
-    const tagIndex = Number(data.tagIndex);
-    newLabels[labelIndex as number].tags.splice(tagIndex, 1);
-    operLabel(newLabels);
-    message.success("已删除!");
+    if (data.hasOwnProperty("tagChildIndex")) {
+      operLabel("deleteChildTag", "", labelIndex, tagIndex, tagChildIndex);
+    } else {
+      operLabel("deleteTag", "", labelIndex, tagIndex);
+    }
   };
   const renderContent = () => {
     return (
       <div className={styles["tag-oper"]}>
-        <div className={styles.module}>
-          <div className={styles.item} onClick={() => copyText(data.link)}>
-            <LinkOutlined />
-            <span>复制链接</span>
+        {!isFolder && (
+          <div className={styles.module}>
+            <div className={styles.item} onClick={() => copyText(link)}>
+              <LinkOutlined />
+              <span>分享链接</span>
+            </div>
+            <div className={styles.item} onClick={() => copyText(link)}>
+              <CopyOutlined />
+              <span>复制配置</span>
+            </div>
           </div>
-        </div>
+        )}
         <div className={styles.module}>
           <div
             className={styles.item}
             onClick={() => {
               setTagModalVisible(true);
               setIsAddChild(false);
+              setChildTagVisible(false);
             }}
           >
             <EditOutlined />
@@ -60,7 +78,10 @@ const Tag: FC<TagPropsType> = (props) => {
           </div>
           <Popconfirm
             title="确认删除该网址么?"
-            onConfirm={() => deleteTag()}
+            onConfirm={() => {
+              deleteTag();
+              setChildTagVisible(false);
+            }}
             okText="确认"
             cancelText="取消"
           >
@@ -71,20 +92,55 @@ const Tag: FC<TagPropsType> = (props) => {
           </Popconfirm>
         </div>
 
-        {!data.hasOwnProperty("tagChildIndex") && (
-          <div
-            className={styles.module}
-            onClick={() => {
-              setTagModalVisible(true);
-              setIsAddChild(true);
-            }}
-          >
-            <div className={styles.item}>
-              <PlusOutlined />
-              <span>添加子网址</span>
-            </div>
-          </div>
-        )}
+        <div className={styles.module}>
+          {!isFolder ? (
+            <>
+              {isChildTag(data) ? (
+                <div
+                  className={styles.item}
+                  onClick={() => {
+                    operLabel(
+                      "changeFolderToTag",
+                      "",
+                      labelIndex,
+                      tagIndex,
+                      tagChildIndex
+                    );
+                    setChildTagVisible(false);
+                  }}
+                >
+                  <FileZipOutlined />
+                  <span>从文件夹中移除</span>
+                </div>
+              ) : (
+                <div
+                  className={styles.item}
+                  onClick={() => {
+                    operLabel("changeTagToFolder", "", labelIndex, tagIndex);
+                    setChildTagVisible(false);
+                  }}
+                >
+                  <FileZipOutlined />
+                  <span>To文件夹</span>
+                </div>
+              )}
+            </>
+          ) : (
+            <>
+              <div
+                className={styles.item}
+                onClick={() => {
+                  setTagModalVisible(true);
+                  setIsAddChild(true);
+                  setChildTagVisible(false);
+                }}
+              >
+                <PlusOutlined />
+                <span>添加子网址</span>
+              </div>
+            </>
+          )}
+        </div>
       </div>
     );
   };
@@ -94,60 +150,56 @@ const Tag: FC<TagPropsType> = (props) => {
     >
       <Image
         src={
-          (data.childs ? (
-            childTagVisible ? (
-              <FolderOpenOutlined />
-            ) : (
-              <FolderOutlined />
-            )
-          ) : (
-            ""
-          )) ||
-          data.icon ||
-          defaultImg
+          isFolder
+            ? childTagVisible
+              ? folderOpenSvg
+              : folderSvg
+            : icon || defaultImg
         }
         alt=""
         width={20}
         height={20}
+        className={styles.icon}
       />
       <div className={styles.name}>
-        <a href={data.link} target="_blank" rel="noreferrer">
-          {data.name}
-        </a>
-      </div>
-      {data.childs && (
-        <Popover
-          placement="top"
-          trigger="click"
-          onVisibleChange={(visible) => {
-            setChildTagVisible(visible);
-          }}
-          content={
-            <div>
-              {data.childs.map((item: TagType, idx: number) => (
-                <TagItem
-                  {...props}
-                  key={item.id}
-                  data={{
-                    ...item,
-                    tagIndex: data.tagIndex,
-                    tagChildIndex: idx,
-                  }}
-                />
-              ))}
-            </div>
-          }
-        >
-          <div
-            className={styles["tag-more"]}
-            onClick={() => {
-              setChildTagVisible(!childTagVisible);
+        {isFolder ? (
+          <Popover
+            placement="top"
+            trigger="click"
+            onVisibleChange={(visible) => {
+              setChildTagVisible(visible);
             }}
+            content={
+              <div>
+                {childs.map((item: TagType, idx: number) => (
+                  <TagItem
+                    {...props}
+                    key={item.id}
+                    data={{
+                      ...item,
+                      tagIndex: tagIndex,
+                      tagChildIndex: idx,
+                    }}
+                  />
+                ))}
+              </div>
+            }
           >
-            {childTagVisible ? <FolderOpenOutlined /> : <FolderOutlined />}
-          </div>
-        </Popover>
-      )}
+            <div
+              className={styles["tag-more"]}
+              onClick={() => {
+                setChildTagVisible(!childTagVisible);
+              }}
+            >
+              {name}
+            </div>
+          </Popover>
+        ) : (
+          <a href={link} target="_blank" rel="noreferrer">
+            {name}
+          </a>
+        )}
+      </div>
       <Popover
         overlayClassName={styles["tag-popover"]}
         content={renderContent()}

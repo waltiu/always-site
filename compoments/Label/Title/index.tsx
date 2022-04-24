@@ -23,9 +23,9 @@ const LabelTitle = ({
   const changeLabelName = (name: string) => {
     const currentLabelIndex = labels.findIndex((item) => item.id === id);
     if (currentLabelIndex > 0) {
-      const newLabels = [...labels];
-      newLabels[currentLabelIndex].title = name;
-      operLabel(newLabels);
+      operLabel('editLabel',{
+        title:name
+      },currentLabelIndex);
       setIsInput(false);
     }
   };

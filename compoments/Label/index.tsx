@@ -35,7 +35,7 @@ const Label = () => {
           setList={(data) => {
             // 热门禁止拖拽
             if (data[0].title === HOT_LABEL) {
-              operLabel(data);
+              operLabel('sortLabel',data);
             }
           }}
           filter={filterDragItem}
@@ -91,7 +91,7 @@ const Label = () => {
                     forceFallback={true}
                     delayOnTouchOnly={true}
                     onEnd={() => {
-                      operLabel(sortQueue, "sortTag");
+                      operLabel("sortTag",sortQueue);
                     }}
                     dragClass="is-checked"
                     onStart={() => {
