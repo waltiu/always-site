@@ -50,6 +50,7 @@
     position: absolute;
     right: 16px;
     top: 8px;
+    z-index: 9;
   }
   &:not(.is-hot):hover {
     .oper {

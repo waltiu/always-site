@@ -141,7 +141,7 @@ const Tag: FC<TagPropsType> = (props) => {
   };
   return (
     <div
-      className={classNames(styles.tag, isChecked ? styles["is-checked"] : "")}
+      className={classNames(styles.tag, isChecked ? styles["is-checked"] : "",isChildTag(data)?styles['child-tag']:"")}
     >
       <Image
         src={
