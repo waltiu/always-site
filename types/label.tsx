@@ -4,7 +4,9 @@ export type TagType={
     link: string,
     icon: string,
     id: string,
-    index?: number
+    childs?: TagType[],
+    tagIndex: number,
+    tagChildIndex?: number,
 }
 export type operType='addTag'|'delete'|'heat'|'sortTag'|'addLabel'|'deleteLabel'
 

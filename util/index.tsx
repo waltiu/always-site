@@ -1,4 +1,5 @@
 import type { LabelType,TagType } from "types/label";
+import { message } from "antd";
 const urlReg=/^((https|http)?:\/\/)[^\s]+/;
 
 export const queryBaidunewsHotList = async () => {
@@ -35,7 +36,19 @@ export const uniqueTags=(data: LabelType[])=>{
 
 
 
-
+export const copyText = (text: string) => {
+  if (text) {
+    const oInput = document.createElement('input');
+    oInput.value = text;
+    document.body.appendChild(oInput);
+    oInput.select(); // 选择对象
+    document.execCommand('Copy'); // 执行浏览器复制命令
+    message.success(`已复制链接,快分享给你的朋友吧!`);
+    oInput.className = 'oInput';
+    oInput.style.display = 'none';
+    document.body.removeChild(oInput);
+  } 
+};
 
 
 export const validateIsSite =(tag: TagType)=>{

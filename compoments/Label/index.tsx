@@ -23,7 +23,7 @@ const Label = () => {
 
   return (
     <div>
-      {labels?.length && (
+      {labels?.length > 0 && (
         <ReactSortable
           group={{ name: "labels", pull: true }}
           animation={200}
@@ -42,7 +42,7 @@ const Label = () => {
         >
           {(labels || []).map((label: LabelType, index: number) => {
             const { title = OTHER_LABEL, tags, id } = label;
-            const currentLabel={...label,index}
+            const currentLabel = { ...label, index };
             return (
               <div
                 key={id}
@@ -112,7 +112,15 @@ const Label = () => {
                   >
                     {(tags || []).map((item: TagType, idx: number) => (
                       <div key={`${item.id}-${idx}`}>
-                        <Tag data={item} />
+                        <Tag
+                          data={{
+                            ...item,
+                            tagIndex: idx,
+                          }}
+                          currentLabel={currentLabel}
+                          labels={labels}
+                          operLabel={operLabel}
+                        />
                       </div>
                     ))}
                   </ReactSortable>
@@ -122,7 +130,6 @@ const Label = () => {
           })}
         </ReactSortable>
       )}
-  
     </div>
   );
 };

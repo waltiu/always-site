@@ -11,10 +11,16 @@
       line-height: 24px;
       font-weight: lighter
   }
+  .tag-more{
+    margin-left: 4px;
+    color: orange;
+    cursor: pointer;
+    font-size: 16px;
+  }
   .oper{
     display: none;
   }
-  &:hover,.is-checked{
+  &:hover,&.is-checked{
     background-color: rgba(245,245,245,0);
     box-shadow: 0 2px 10px #ddd;
     border-radius: 10px;
@@ -28,5 +34,35 @@
       cursor: pointer;
     }
   }
+
  
 }
+.tag-popover{
+  :global{
+    .ant-popover-inner-content{
+      padding: 0px;
+    }
+  }
+  .tag-oper{
+    .module{
+      padding: 2px 0px;
+      &:not(:last-child){
+        border-bottom: 1px solid #f5f5f5;;
+      }
+      .item{
+        padding: 6px 12px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        >span{
+          margin-left: 4px;
+        }
+        &:hover{
+          background-color: #ecf5ff;
+          color: #66b1ff;
+        }
+      }
+    }
+  }
+}
+

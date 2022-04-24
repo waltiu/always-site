@@ -45,3 +45,6 @@ a {
   background-color: rgb(159 159 159);
   border-radius: 6px;
 }
+.ant-modal-wrap{
+  z-index: 9999;
+}
