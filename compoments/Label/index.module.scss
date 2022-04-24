@@ -5,6 +5,7 @@
   flex-direction: column;
   position: relative;
   padding: 0px !important;
+  padding-right: 0px;
   &:hover {
     .label-drag {
       visibility: visible;
@@ -28,7 +29,7 @@
     visibility: hidden;
   }
   .tags {
-    padding: 12px 48px;
+    padding: 12px 0px 12px 28px;
     min-height: 80px;
     > div {
       display: flex;

@@ -8,7 +8,6 @@ import {
   EditOutlined,
   DeleteOutlined,
   PlusOutlined,
-  CopyOutlined,
   FileZipOutlined,
 } from "@ant-design/icons";
 import styles from "./index.module.scss";
@@ -57,10 +56,6 @@ const Tag: FC<TagPropsType> = (props) => {
             <div className={styles.item} onClick={() => copyText(link)}>
               <LinkOutlined />
               <span>分享链接</span>
-            </div>
-            <div className={styles.item} onClick={() => copyText(link)}>
-              <CopyOutlined />
-              <span>复制配置</span>
             </div>
           </div>
         )}
@@ -190,12 +185,13 @@ const Tag: FC<TagPropsType> = (props) => {
               onClick={() => {
                 setChildTagVisible(!childTagVisible);
               }}
+              title={name}
             >
               {name}
             </div>
           </Popover>
         ) : (
-          <a href={link} target="_blank" rel="noreferrer">
+          <a href={link} target="_blank" rel="noreferrer" title={name}>
             {name}
           </a>
         )}
