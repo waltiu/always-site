@@ -13,7 +13,7 @@
     "prepare": "husky install",
     "lint-staged": "lint-staged",
     "ele": "electron .",
-    "exe": " npm run ele | npm run start",
+    "exe": "cross-env dev=production  npm run ele && npm run start",
     "make": "electron-forge make"
   },
   "lint-staged": {
