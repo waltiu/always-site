@@ -3,6 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "main": "main.js",
+  
+"build": {
+  "appId": "com.xxx.app",
+  "directories":{
+    "output":"out"
+  },
+  "win": {
+    "target": []
+  }
+},
   "scripts": {
     "start": "next dev",
     "build": "next build",
@@ -14,7 +24,7 @@
     "lint-staged": "lint-staged",
     "ele": "electron .",
     "exe": "cross-env dev=production  npm run ele && npm run start",
-    "make": "electron-forge make"
+    "make": "electron-builder --win --x64"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": "npm run lint"
@@ -46,6 +56,7 @@
     "@types/react-dom": "17.0.14",
     "@typescript-eslint/eslint-plugin": "^5.20.0",
     "electron": "^18.1.0",
+    "electron-builder": "^23.0.3",
     "eslint": "8.12.0",
     "eslint-plugin-jest": "^26.1.4",
     "eslint-plugin-react": "^7.29.4",
