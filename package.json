@@ -2,6 +2,7 @@
   "name": "always-site",
   "version": "0.1.0",
   "private": true,
+  "main": "main.js",
   "scripts": {
     "start": "next dev",
     "build": "next build",
@@ -10,7 +11,10 @@
     "generate": "next build && next export",
     "export": "next export",
     "prepare": "husky install",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "ele": "electron .",
+    "exe": " npm run ele | npm run start",
+    "make": "electron-forge make"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": "npm run lint"
@@ -23,7 +27,9 @@
     "antd": "^4.19.5",
     "axios": "^0.26.1",
     "classnames": "^2.3.1",
+    "cross-env": "^7.0.3",
     "dayjs": "^1.11.0",
+    "electron-reloader": "^1.2.1",
     "jsonp": "^0.2.1",
     "lint-staged": "^12.4.0",
     "next": "12.1.4",
@@ -34,15 +40,17 @@
     "sortablejs": "^1.15.0"
   },
   "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.63",
+    "@types/node": "17.0.23",
+    "@types/react": "17.0.43",
+    "@types/react-dom": "17.0.14",
     "@typescript-eslint/eslint-plugin": "^5.20.0",
+    "electron": "^18.1.0",
+    "eslint": "8.12.0",
     "eslint-plugin-jest": "^26.1.4",
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.4.0",
     "eslint-plugin-unicorn": "^42.0.0",
-    "@types/node": "17.0.23",
-    "@types/react": "17.0.43",
-    "@types/react-dom": "17.0.14",
-    "eslint": "8.12.0",
     "husky": "^7.0.4",
     "typescript": "4.6.3"
   }

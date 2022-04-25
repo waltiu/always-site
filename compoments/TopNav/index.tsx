@@ -22,7 +22,7 @@ const TopNav = () => {
       <div className={styles["search-box"]}>
         <Input
           className={styles.search}
-          placeholder="Borderless"
+          placeholder="请输入想要搜索的内容"
           bordered={false}
           onChange={querySearch}
         />
