@@ -24,7 +24,7 @@
     "lint-staged": "lint-staged",
     "ele": "electron .",
     "exe": "cross-env dev=production  npm run ele && npm run start",
-    "make": "electron-builder "
+    "make": "electron-builder --win --x64"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": "npm run lint"
